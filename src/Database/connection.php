@@ -1,7 +1,14 @@
 <?php
-	$conn = new mysqli('localhost', 'root', '', 'bus_system');
-	if ($conn -> connect_error){
-		die("Connection failed : " . $connect_error);
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "e-printing";
+	
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
 	}
-	//echo "connection Successfuly";
 ?>

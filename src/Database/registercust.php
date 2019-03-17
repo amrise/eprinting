@@ -9,13 +9,14 @@
 	// prepare and bind
 	$stmt = $conn->prepare("INSERT INTO users (email, name, password) VALUES (?, ?, ?)");
 	$stmt->bind_param("sss", $email, $username, $password);
+	$stmt->execute();
 
 						
 	if($stmt)
 			{
 			echo '<script language="javascript">';
-			echo 'alert("Your registration are Successfully");';
-			echo 'window.location.href="administrator/mainpage.php";';
+			echo 'alert("Your account have been created. Please Login");';
+			echo 'window.location.href="index.php";';
 			echo '</script>'; 
 			}else 
 			

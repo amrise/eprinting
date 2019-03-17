@@ -12,7 +12,18 @@
       <a class="navbar-brand" >
         <img  src="img/brand/eprinting.jpg" width="150" height="50" >
       </a>
-    </header>
+
+      <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+        <a class="nav-link" href="index.php">Login</a>
+        </li>
+
+        <li class="nav-item px-3">
+        <a class="nav-link" href="register.php">Register</a>
+        </li>
+
+      </ul>
+    </header><br><br>
 
   <div class="container">
     <div class="row">

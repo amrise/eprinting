@@ -1,3 +1,5 @@
+
+
 <head>
 <link href="css/style.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
@@ -10,7 +12,18 @@
       <a class="navbar-brand" >
         <img  src="img/brand/eprinting.jpg" width="150" height="50" >
       </a>
-    </header>
+
+      <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+        <a class="nav-link" href="index.php">Login</a>
+        </li>
+
+        <li class="nav-item px-3">
+        <a class="nav-link" href="register.php">Register</a>
+        </li>
+
+      </ul>
+    </header><br><br>
 
   <div class="container">
     <div class="row">
@@ -18,23 +31,24 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin">
+
+            <form class="form-signin" method="post">
+
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
                 <label for="inputEmail">Email address</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                 <label for="inputPassword">Password</label>
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button> <br><br>
-
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit">Sign in</button> <br><br>
               
-              <a href="register.php">Don't have account? Create here. </a>
-                          
+              <a href="register.php">Don't have account? Create here. </a>              
             </form>
+
           </div>
         </div>
       </div>
@@ -47,3 +61,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
+<?php include ('database/login.php'); ?>

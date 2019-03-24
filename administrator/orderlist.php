@@ -1,7 +1,3 @@
-<?php
-  require ('../database/customerorder.php');
-  ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +18,9 @@
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -30,7 +29,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -46,22 +45,14 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Purchase
+        Customer
       </div>
 
-
-      <!-- Nav Item - Charts -->
+      <!-- Nav Item - Tables -->
       <li class="nav-item active">
         <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Booking Order</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item ">
-        <a class="nav-link" href="statusorder.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Status Order</span></a>
+          <span>Order List</span></a>
       </li>
 
       <!-- Divider -->
@@ -134,79 +125,95 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item text-gray-900">STEP 1: Order</li>
-        </ol>
-
-                <div class="card shadow mb-4">
-                <div class="card-header p-3 bg-gray-900">
-              <h6 class="m-0 font-weight-bold text-gray-100">Booking Order</h6>
+          
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-info">
+              <h6 class="m-0 font-weight-bold text-gray-100">Order List</h6>
             </div>
-                  <div class="card-body">
-                    <form class="form-horizontal" action="" method="post">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Printing Type</th>
+                      <th>Colour</th>
+                      <th>File</th>
+                      <th>Date</th>
+                      <th>Assign Task</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                      <th>Printing Type</th>
+                      <th>Colour</th>
+                      <th>File</th>
+                      <th>Date</th>
+                      <th>Assign Task</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                   
+                    <?php
+                      require ('../database/connection.php');
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Purchased Date :</label>
-                        <div class="col-md-9">
-                          <p class="form-control-static">Today</p>
-                        </div>
-                      </div>
+                      if ($stmt = $conn->prepare("SELECT jenis, warna, fileprint, tarikh FROM custorder")) 
+                        {
+                          
+                          /* execute statement */
+                          $stmt->execute();
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Printing type :</label>
-                        <div class="col-md-9 col-form-label">
-                          <div class="form-check">
-                            <input class="form-check-input" id="radio1" type="radio" value="1" name="jenis" required>
-                            <label class="form-check-label" for="radio1">A4 Normal Print</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="radio2" type="radio" value="2" name="jenis" required>
-                            <label class="form-check-label" for="radio2">Advanced Print</label>
-                          </div>
-                        </div>
-                      </div>
+                          /* bind result variables */
+                          $stmt->bind_result($type, $colour, $file, $date);
 
+                          /* fetch values */
+                          while ($stmt->fetch()) 
+                          {
+                              echo "
+                                <tr>
+                                  <td>";
+                                   
+                                   if( $type == 1)
+                                   {
+                                     echo "A4 Normal Print";
+                                   } else
+                                   {
+                                     echo "Advanced Print";
+                                   }  
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Colour :</label>
-                        <div class="col-md-9 col-form-label">
-                          <div class="form-check">
-                            <input class="form-check-input" id="radio1" type="radio" value="1" name="warna" required>
-                            <label class="form-check-label" for="radio1">Black and White</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="radio2" type="radio" value="2" name="warna" required>
-                            <label class="form-check-label" for="radio2">Colour</label>
-                          </div>
-                        </div>
-                      </div>    
+                                   echo " </td>
+                                  <td>";
+                                  
+                                  if( $colour  == 1)
+                                   {
+                                     echo "Black and White";
+                                   } else
+                                   {
+                                     echo "Colour";
+                                   }  
+                                  echo " </td>
+                                  <td> $file </td>
+                                  <td> $date </td>
+                                  <td>";  echo '
+                                  <a href="#" class="btn btn-primary btn-icon-split">
+                                  <span class="text">Assign</span></a>
+                                  <a href="#" class="btn btn-danger btn-icon-split">
+                                  <span class="text">Reject</span></a>
+                                  ';
+                                  echo " </td>
+                                </tr>
+                                ";
+                          }
+                          $stmt->close();
+                        }
+                          $conn->close();
+                      ?>      
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textarea-input">Description</label>
-                        <div class="col-md-9">
-                          <textarea class="form-control" id="textarea-input" name="keterangan" rows="5" placeholder="Content.." required></textarea>
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="file-input">File input</label>
-                        <div class="col-md-9">
-                          <input id="file-input" type="file" name="failorder">
-                        </div>
-                      </div><br><br>
-
-                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
-                      <i class="fa fa-dot-circle-o"></i> Submit</button>
-                    <button class="btn btn-sm btn-danger" type="reset">
-                      <i class="fa fa-ban"></i> Reset</button>
-
-                    </form>
-                  </div>
-                  <div class="card-footer">
-
-                  </div>
-                </div>
-            <!-- /.card shadow-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -214,7 +221,7 @@
       </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
+     <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">

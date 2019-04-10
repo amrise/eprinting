@@ -146,7 +146,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Printing Type</th>
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
@@ -155,7 +154,6 @@
                   </thead>
                   <tfoot>
                      <tr>
-                      <th>Printing Type</th>
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
@@ -167,31 +165,20 @@
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT jenis, warna, fileprint, tarikh, statusorder FROM custorder")) 
+                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh, statusorder FROM custorder")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($type, $colour, $file, $date, $status);
+                          $stmt->bind_result($colour, $file, $date, $status);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
                           {
                               echo "
                                 <tr>
-                                  <td>";
-                                   
-                                   if( $type == 1)
-                                   {
-                                     echo "A4 Normal Print";
-                                   } else
-                                   {
-                                     echo "Advanced Print";
-                                   }  
-
-                                   echo " </td>
                                   <td>";
                                   
                                   if( $colour  == 1)

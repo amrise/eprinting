@@ -54,10 +54,10 @@
 							<a class="page-scroll" href="#contact">Contact</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="#partners">Login</a>
+							<a class="page-scroll" href="login.php">Login</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="#team">Register</a>
+							<a class="page-scroll" href="register.php">Register</a>
 						</li>
 					</ul>
 				</div>

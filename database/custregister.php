@@ -15,7 +15,7 @@ $stmt->execute();
 
 if ($conn) {
     echo '<script language="javascript">';
-    echo 'alert("Your account have been created");';
+    echo 'alert("Your account have been created. Please login.");';
     echo 'window.location.href="index.php";';
     echo '</script>'; }
     else {

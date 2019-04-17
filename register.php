@@ -32,18 +32,19 @@ require ('database/custregister.php');
               </div>
 
               <div class="form-label-group">
-                <input type="number" id="nombor" class="form-control" name="usernumber" placeholder="Telephone No" required>
+                <input type="number" id="nombor" class="form-control" name="usernumber"  min="0" placeholder="Telephone No" required>
                 <label for="nombor">Telephone No</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 <label for="inputPassword">Password</label>
               </div>
 
               <br>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" >Sign up</button>
               <br>
+              <p>If you have an account. Please click <a href="login.php">Here!!!</a><p>
           
             </form>
           </div>

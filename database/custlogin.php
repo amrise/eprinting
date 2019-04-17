@@ -1,8 +1,12 @@
 <?php
+    session_start();
     include('connection.php'); 
     if(isset($_POST['submit'])){
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['password'] = md5($_POST['password']);
+
+    $username = $_SESSION['username'];
+    $password = $_SESSION['password'];
     $account = "";
     
     $stmt = $conn->prepare("SELECT username, password, account FROM users WHERE username=? AND password=? LIMIT 1");
@@ -19,7 +23,7 @@
                 $_SESSION['Logged'] = 0;
                 $_SESSION['username'] = $username;
                 echo '<script language="javascript">';
-			    echo 'window.location.href="index.php";';
+			    echo 'window.location.href="customer/custorder.php";';
 			    echo '</script>'; 
                } 
                else if ($account == '1') 
@@ -27,7 +31,15 @@
                    $_SESSION['Logged'] = 1;
                    $_SESSION['username'] = $username;
                    echo '<script language="javascript">';
-			       echo 'window.location.href="index.php";';
+			       echo 'window.location.href="administrator/orderlist.php";';
+			       echo '</script>'; 
+               }
+               else if ($account == '2') 
+               {
+                   $_SESSION['Logged'] = 2;
+                   $_SESSION['username'] = $username;
+                   echo '<script language="javascript">';
+			       echo 'window.location.href="staff/printinglist.php";';
 			       echo '</script>'; 
                }
                else

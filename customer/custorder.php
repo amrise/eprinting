@@ -13,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Tables</title>
+  <title>UTeM e-Printing</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,9 +33,9 @@
     <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          
         </div>
         <div class="sidebar-brand-text mx-3">E-Printing</div>
       </a>
@@ -53,7 +53,7 @@
       <!-- Nav Item - Charts -->
       <li class="nav-item active">
         <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-chart-area"></i>
+          <i class="fas fa-fw fa-print"></i>
           <span>Booking Order</span></a>
       </li>
 
@@ -101,8 +101,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i><?php echo $_SESSION['username']; ?></i></span>
+                <i class="fas fa-user"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -111,11 +111,7 @@
                   Profile
                 </a>
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-dollar-sign fa-sm fa-fw mr-2 text-gray-400"></i>
                  Payment
                 </a>
                 <div class="dropdown-divider"></div>
@@ -152,20 +148,6 @@
                         </div>
                       </div>
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Printing type :</label>
-                        <div class="col-md-9 col-form-label">
-                          <div class="form-check">
-                            <input class="form-check-input" id="radio1" type="radio" value="1" name="jenis" required>
-                            <label class="form-check-label" for="radio1">A4 Normal Print</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="radio2" type="radio" value="2" name="jenis" required>
-                            <label class="form-check-label" for="radio2">Advanced Print</label>
-                          </div>
-                        </div>
-                      </div>
-
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label">Colour :</label>
@@ -179,12 +161,48 @@
                             <label class="form-check-label" for="radio2">Colour</label>
                           </div>
                         </div>
-                      </div>    
+                      </div> 
+                     
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textarea-input">Description</label>
+                        <label class="col-md-3 col-form-label">Binding :</label>
+                        <div class="col-md-9 col-form-label">
+                          <div class="form-check">
+                            <input class="form-check-input" id="radio1" type="radio" value="1" name="binding" required>
+                            <label class="form-check-label" for="radio1">Binding Comb</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="radio2" type="radio" value="2" name="binding" required>
+                            <label class="form-check-label" for="radio2">Binding Tape</label>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Transparent Cover :</label>
+                        <div class="col-md-9 col-form-label">
+                          <div class="form-check">
+                            <input class="form-check-input" id="radio1" type="radio" value="1" name="transparent" required>
+                            <label class="form-check-label" for="radio1">Front and Back</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="radio2" type="radio" value="2" name="transparent" required>
+                            <label class="form-check-label" for="radio2">Front only</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="radio3" type="radio" value="3" name="transparent" required>
+                            <label class="form-check-label" for="radio3">Didn't need</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Amount to print :</label>
                         <div class="col-md-9">
-                          <textarea class="form-control" id="textarea-input" name="keterangan" rows="5" placeholder="Content.." required></textarea>
+                          <input type="number" class="form-control" id="textfield-input" name="amount" placeholder="1" min="0" required>
                         </div>
                       </div>
 

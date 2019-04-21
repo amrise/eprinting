@@ -5,13 +5,14 @@
 	// Select data dari users
 	$stmt = $conn->prepare("SELECT username, fullname, usernumber FROM users WHERE username='".$_SESSION['username']."' LIMIT 1");
 	$stmt->execute();
-	$stmt->bind_result($username, $fullname, $usernumber);
+	$stmt->bind_result($usernama, $fullname, $usernumber);
 
 	// Declare information
 	while ($stmt->fetch()) 
 	{
 	$namacust = $fullname;
 	$nomborcust = $usernumber;
+	$usercust = $usernama;
 	}
 	$stmt->close();
 
@@ -25,8 +26,8 @@
 	$statusorder = "0"; 
   
 	// prepare and bind
-	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?)");
-	$stmt->bind_param("iiiibisi", $warna, $binding, $transparent, $amount, $failprint, $statusorder, $namacust, $nomborcust);
+	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone, custusername) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?, ?)");
+	$stmt->bind_param("iiiibisis", $warna, $binding, $transparent, $amount, $failprint, $statusorder, $namacust, $nomborcust, $usercust);
 	$stmt->send_long_data(4, $failprint);
 	$stmt->execute();
 						

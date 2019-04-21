@@ -278,6 +278,20 @@
 								</div>
 							</div>
 							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Your Matric Card *" id="matric" required="" data-validation-required-message="Please enter your matric card.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Your Faculty *" id="faculty" required="" data-validation-required-message="Please enter your faculty.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
 										<textarea class="form-control" placeholder="Your Message *" id="message" required="" data-validation-required-message="Please enter a message."></textarea>

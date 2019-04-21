@@ -8,8 +8,8 @@ if(isset($_POST['submit'])){
     $usernumber1 = $_POST['usernumber'];
     $usernumber2 = "6";
     $usernumber = $usernumber2.$usernumber1;
-    $password = md5($_POST['password']);
-    $akaun = "0";
+    $password = md5("printing123");
+    $akaun = "2";
 
 
 $stmt = $conn->prepare("INSERT INTO users (fullname, username, usernumber, password, account) VALUES (?, ?, ?, ?, ?)");
@@ -18,8 +18,8 @@ $stmt->execute();
 
 if ($conn) {
     echo '<script language="javascript">';
-    echo 'alert("Your account have been created. Please login.");';
-    echo 'window.location.href="index.php";';
+    echo 'alert("Staff account have been created.");';
+    echo 'window.location.href="managestaff.php";';
     echo '</script>'; }
     else {
     echo '<script language="javascript">';

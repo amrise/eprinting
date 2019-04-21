@@ -202,14 +202,14 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Amount to print :</label>
                         <div class="col-md-9">
-                          <input type="number" class="form-control" id="textfield-input" name="amount" placeholder="1" min="0" required>
+                          <input type="number" class="form-control" id="textfield-input" name="amount" placeholder="1" min="1" required>
                         </div>
                       </div>
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="file-input">File input</label>
                         <div class="col-md-9">
-                          <input id="file-input" type="file" name="failorder">
+                          <input id="file-input" type="file" name="failorder" accept="application/pdf">
                         </div>
                       </div><br><br>
 

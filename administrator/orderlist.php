@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Tables</title>
+  <title>UTeM e-Printing</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,9 +37,8 @@
     <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
         </div>
         <div class="sidebar-brand-text mx-3">E-Printing</div>
       </a>
@@ -48,11 +52,33 @@
         Customer
       </div>
 
-      <!-- Nav Item - Tables -->
+      <!-- Nav order list -->
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>Order List</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Staff
+      </div>
+
+      <!-- Nav register staff -->
+      <li class="nav-item active">
+        <a class="nav-link" href="registerstaff.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Registering staff</span></a>
+      </li>
+
+      <!-- Nav manage staff -->
+      <li class="nav-item active">
+        <a class="nav-link" href="managestaff.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Managing staff</span></a>
       </li>
 
       <!-- Divider -->
@@ -92,18 +118,14 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i><?php echo $_SESSION['username']; ?></i></span>
+                <i class="fas fa-user"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

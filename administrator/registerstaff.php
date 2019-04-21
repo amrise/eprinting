@@ -1,6 +1,7 @@
 <?php
-  session_start();
-  ?>
+session_start();
+require ('../database/staffregister.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,11 +22,9 @@
 
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="css/labels.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  
 
 </head>
 
@@ -35,12 +34,11 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
-          
         </div>
         <div class="sidebar-brand-text mx-3">E-Printing</div>
       </a>
@@ -51,22 +49,36 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Purchase
+        Customer
       </div>
-
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item ">
-        <a class="nav-link" href="custorder.php">
-          <i class="fas fa-fw fa-print"></i>
-          <span>Booking Order</span></a>
-      </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Status Order</span></a>
+          <span>Order List</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Staff
+      </div>
+
+      <!-- Nav register staff -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Registering staff</span></a>
+      </li>
+
+      <!-- Nav manage staff -->
+      <li class="nav-item active">
+        <a class="nav-link" href="managestaff.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Managing staff</span></a>
       </li>
 
       <!-- Divider -->
@@ -106,7 +118,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i><?php echo $_SESSION['username']; ?></i></span>
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i><?php echo $_SESSION['username']; ?></i></span>
                 <i class="fas fa-user"></i>
               </a>
               <!-- Dropdown - User Information -->
@@ -116,7 +128,7 @@
                   Profile
                 </a>
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-dollar-sign fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                  Payment
                 </a>
                 <div class="dropdown-divider"></div>
@@ -136,89 +148,50 @@
         <div class="container-fluid">
 
           
-          <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gray-900">
-              <h6 class="m-0 font-weight-bold text-gray-100">Status Order</h6>
+            <div class="card-header py-3 bg-gradient-info">
+              <h6 class="m-0 font-weight-bold text-gray-100">Create Staff Account</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Colour</th>
-                      <th>File</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                     <tr>
-                      <th>Colour</th>
-                      <th>File</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                   
-                    <?php
-                      require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh, statusorder FROM custorder WHERE custusername='".$_SESSION['username']."' ")) 
-                        {
-                          
-                          /* execute statement */
-                          $stmt->execute();
+                    <form class="form-horizontal" action="" method="post">
 
-                          /* bind result variables */
-                          $stmt->bind_result($colour, $file, $date, $status);
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="fullname" required autofocus>
+                        </div>
+                      </div>
 
-                          /* fetch values */
-                          while ($stmt->fetch()) 
-                          {
-                              echo "
-                                <tr>
-                                  <td>";
-                                  
-                                  if( $colour  == 1)
-                                   {
-                                     echo "Black and White";
-                                   } else
-                                   {
-                                     echo "Colour";
-                                   }  
-                                  echo " </td>
-                                  <td> $file </td>
-                                  <td> $date </td>
-                                  <td>"; 
-                                  
-                                  if($status == 0)
-                                  {
-                                    echo ' <span class="label warning">In Process</span>  ';
-                                  } else
-                                  {
-                                    echo ' <span class="label success">Done</span>  ';
-                                  }       
-                                  
-                                  echo "
-                                  </td>
-                                </tr>
-                                ";
-                          }
-                          $stmt->close();
-                        }
-                          $conn->close();
-                      ?>      
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="username" required>
+                        </div>
+                      </div>
 
-                  </tbody>
-                </table>
-              </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
+                        <div class="col-md-9">
+                          <input type="number" class="form-control" id="textfield-input" name="usernumber" min="0" required>
+                        </div>
+                      </div>          
+
+                      <br><br>
+                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
+                      <i class="fa fa-dot-circle-o"></i> Submit</button>
+                        <button class="btn btn-sm btn-danger" type="reset">
+                      <i class="fa fa-ban"></i> Reset</button>
+
+                    </form>
+
+
+
             </div>
           </div>
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Page Content -->
 
       </div>
       <!-- End of Main Content -->

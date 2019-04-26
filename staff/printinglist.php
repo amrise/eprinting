@@ -1,3 +1,8 @@
+<?php
+session_start();
+include('../database/updateprofile.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,22 +97,14 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><i><?php echo $_SESSION['username']; ?></i></span>
+                <i class="fas fa-user"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                 Payment
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -186,7 +183,10 @@
                                      echo "Colour";
                                    }  
                                   echo " </td>
-                                  <td> $file </td>
+                                  <td>";  echo '
+                                  <a href="#" class="btn btn-bg-gray-900 btn-circle">
+                                  <i class="fas fa-print"></i></a>
+                                  '; echo " </td>
                                   <td>";  echo '
                                   <a href="#" class="btn btn-info btn-circle">
                                   <i class="fas fa-info-circle"></i></a>
@@ -194,8 +194,7 @@
                                   <i class="fas fa-check"></i></a>
                                   <a href="#" class="btn btn-warning btn-circle">
                                   <i class="fas fa-exclamation-triangle"></i></a>
-                                  ';
-                                  echo " </td>
+                                  '; echo " </td>
                                 </tr>
                                 ";
                           }
@@ -236,6 +235,51 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!-- Profile Modal-->
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+                      <form class="form-horizontal" action="" method="post">
+                        
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="fullname1" value="<?php echo $namacust ?>" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="username1" value="<?php echo $usercust ?>" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
+                        <div class="col-md-9">
+                          <input type="number" class="form-control" id="textfield-input" name="usernumber1" min="0" value="<?php echo $nomborcust ?>" required>
+                        </div>
+                      </div>   
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit" name="submitprofile">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include('../database/updateprofile.php'); 
   ?>
 
 <!DOCTYPE html>
@@ -111,7 +112,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -149,6 +150,7 @@
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
+                      <th>Message</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -157,6 +159,7 @@
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
+                      <th>Message</th>
                       <th>Status</th>
                     </tr>
                   </tfoot>
@@ -165,14 +168,14 @@
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh, statusorder FROM custorder WHERE custusername='".$_SESSION['username']."' ")) 
+                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh, statusorder, mesej FROM custorder WHERE custusername='".$_SESSION['username']."' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($colour, $file, $date, $status);
+                          $stmt->bind_result($colour, $file, $date, $status, $mesej);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
@@ -191,12 +194,18 @@
                                   echo " </td>
                                   <td> $file </td>
                                   <td> $date </td>
+                                  <td> $mesej </td>
                                   <td>"; 
                                   
                                   if($status == 0)
                                   {
                                     echo ' <span class="label warning">In Process</span>  ';
-                                  } else
+                                  } 
+                                  else if($status == 1)
+                                  {
+                                    echo ' <span class="label danger">Reject</span>  ';
+                                  } 
+                                  else
                                   {
                                     echo ' <span class="label success">Done</span>  ';
                                   }       
@@ -243,6 +252,52 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+
+  <!-- Profile Modal-->
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+                      <form class="form-horizontal" action="" method="post">
+                        
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="fullname1" value="<?php echo $namacust ?>" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="username1" value="<?php echo $usercust ?>" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
+                        <div class="col-md-9">
+                          <input type="number" class="form-control" id="textfield-input" name="usernumber1" min="0" value="<?php echo $nomborcust ?>" required>
+                        </div>
+                      </div>   
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit" name="submitprofile">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

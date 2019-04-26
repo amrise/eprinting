@@ -9,6 +9,7 @@ $stmt->execute();
 
 if ($conn) {
     echo '<script language="javascript">';
+    echo 'alert("Delete Successfully");';
     echo 'window.location.href="../administrator/managestaff.php";';
     echo '</script>';
     }

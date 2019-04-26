@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require ('../database/rejectorder.php');
 ?>
 
 <!DOCTYPE html>
@@ -123,15 +123,6 @@ session_start();
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                 Payment
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -177,18 +168,20 @@ session_start();
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh FROM custorder")) 
+                      if ($stmt = $conn->prepare("SELECT custorderID, warna, fileprint, tarikh FROM custorder WHERE statusorder='0 && 1' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($colour, $file, $date);
+                          $stmt->bind_result($orderid, $colour, $file, $date);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
                           {
+                            $_SESSION['id'] = $orderid;
+
                               echo "
                                 <tr>
                                   <td>";
@@ -206,16 +199,14 @@ session_start();
                                   <td>";  echo '
                                   <a href="#" class="btn btn-primary btn-icon-split">
                                   <span class="text">Assign</span></a>
-                                  <a href="#" class="btn btn-danger btn-icon-split">
+                                  <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#rejectModal">
                                   <span class="text">Reject</span></a>
                                   ';
                                   echo " </td>
                                 </tr>
                                 ";
                           }
-                          $stmt->close();
                         }
-                          $conn->close();
                       ?>      
 
                   </tbody>
@@ -250,6 +241,37 @@ session_start();
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!-- Reject Modal-->
+  <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reject Customer Order?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+                      <form class="form-horizontal" action="" method="post">
+                        
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Message :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="mesej" required autofocus>
+                        </div>
+                      </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger" type="submit" name="rejectorder">Reject</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

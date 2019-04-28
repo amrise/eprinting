@@ -1,5 +1,6 @@
 <?php
 session_start();
+require ('../database/staffregister.php');
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +52,9 @@ session_start();
         Customer
       </div>
 
-      <!-- Nav order list -->
+      <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order List</span></a>
       </li>
@@ -68,7 +69,7 @@ session_start();
 
       <!-- Nav register staff -->
       <li class="nav-item active">
-        <a class="nav-link" href="registerstaff.php">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-user"></i>
           <span>Staff Registration</span></a>
       </li>
@@ -137,86 +138,114 @@ session_start();
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          
-          <!-- DataTales Example -->
+        <div class="row">
+
+        <!-- Calculate Price -->
+        <div class="col-lg-6">
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Order List</h6>
+              <h6 class="m-0 font-weight-bold text-gray-100">Calculate Price</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Colour</th>
-                      <th>File</th>
-                      <th>Date</th>
-                      <th>Assign Task</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                     <tr>
-                      <th>Colour</th>
-                      <th>File</th>
-                      <th>Date</th>
-                      <th>Assign Task</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                   
-                    <?php
-                      require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT custorderID, warna, fileprint, tarikh FROM custorder WHERE statusorder='0' ")) 
+                    <form class="form-horizontal" action="" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="fullname" required autofocus>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" id="textfield-input" name="username" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
+                        <div class="col-md-9">
+                          <input type="number" class="form-control" id="textfield-input" name="usernumber" min="0" required>
+                        </div>
+                      </div>          
+
+                      <br><br>
+                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
+                      <i class="fa fa-dot-circle-o"></i> Submit</button>
+                        <button class="btn btn-sm btn-danger" type="reset">
+                      <i class="fa fa-ban"></i> Reset</button>
+
+                    </form>
+
+            </div>
+          </div>
+          </div>
+
+
+
+        <!-- Assign to staff -->
+          <div class="col-lg-6">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-info">
+              <h6 class="m-0 font-weight-bold text-gray-100">Assign to Staff</h6>
+            </div>
+            <div class="card-body">
+
+                    <form class="form-horizontal" action="" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Staff Name :</label>
+                        <div class="col-md-9">
+
+                        <?php
+                        require ('../database/connection.php');
+
+                        if ($stmt = $conn->prepare("SELECT fullname FROM users WHERE account='2' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($orderid, $colour, $file, $date);
+                          $stmt->bind_result($fullname);
+
+                          echo "<select class='form-control' id='textfield-input' name='staffname' required>";
 
                           /* fetch values */
                           while ($stmt->fetch()) 
                           {
-
-                              echo "
-                                <tr>
-                                  <td>";
-                                  
-                                  if( $colour  == 1)
-                                   {
-                                     echo "Black and White";
-                                   } else
-                                   {
-                                     echo "Colour";
-                                   }  
-                                  echo " </td>
-                                  <td> $file </td>
-                                  <td> $date </td>
-                                  <td>";  echo '
-                                  <a href="#" class="btn btn-primary btn-icon-split">
-                                  <span class="text">Assign</span></a>
-                                  <a href="../database/rejectorder.php?id=' . " $orderid " . ' " class="btn btn-danger btn-icon-split">
-                                  <span class="text">Reject</span></a>
-                                  ';
-                                  echo " </td>
-                                </tr>
-                                ";
+                            echo"<option value='$fullname'>$fullname</option>";
                           }
                           $stmt->close();
-                        }
-                        $conn->close();
-                      ?>      
+
+                          echo "</select>";
+                          
+                         }
+                         $conn->close();
+                          ?>
+                        </div>
+                      </div>
                       
-                  </tbody>
-                </table>
-              </div>
+
+                      <br><br>
+                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
+                      <i class="fa fa-dot-circle-o"></i> Submit</button>
+                        <button class="btn btn-sm btn-danger" type="reset">
+                      <i class="fa fa-ban"></i> Reset</button>
+
+                    </form>
+
             </div>
+          </div>
+          </div>
+
+        <!-- End of row -->
           </div>
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Page Content -->
 
       </div>
       <!-- End of Main Content -->
@@ -241,36 +270,6 @@ session_start();
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Reject Modal-->
-  <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Reject Customer Order?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-                      <form class="form-horizontal" action="" method="post">
-                        
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Message :</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="mesej" required autofocus>
-                        </div>
-                      </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-danger" type="submit" name="rejectorder">Reject</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

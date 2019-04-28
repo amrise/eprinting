@@ -158,7 +158,7 @@ include('../database/updateprofile.php');
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh FROM custorder")) 
+                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh FROM custorder WHERE staffusername='".$_SESSION['username']."' ")) 
                         {
                           
                           /* execute statement */

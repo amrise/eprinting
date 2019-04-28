@@ -71,14 +71,14 @@ session_start();
       <li class="nav-item active">
         <a class="nav-link" href="registerstaff.php">
           <i class="fas fa-fw fa-user"></i>
-          <span>Registering staff</span></a>
+          <span>Staff Registration</span></a>
       </li>
 
       <!-- Nav manage staff -->
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
-          <span>Managing staff</span></a>
+          <span>Manage staff</span></a>
       </li>
 
       <!-- Divider -->

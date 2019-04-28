@@ -1,8 +1,9 @@
 <?php
 require ('connection.php');
 
-if(isset($_POST['rejectorder'])){
-$stmt = $conn->prepare("UPDATE custorder SET statusorder='1' WHERE custorderID='".$_SESSION['id']."' LIMIT 1");
+$id = intval($_GET['id']);
+echo $id;
+$stmt = $conn->prepare("UPDATE custorder SET statusorder='1' WHERE custorderID = '$id'; ");
 $stmt->execute();
 
 // if ($conn) {
@@ -17,5 +18,5 @@ $stmt->execute();
 
 $stmt->close();
 $conn->close();
-}
+
 ?>

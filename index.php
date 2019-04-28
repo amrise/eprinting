@@ -97,7 +97,7 @@
 								<h3>Black Print</h3>
 								<p><strong>RM 0.10</strong> per page.</p><br>
 								<h3>Colour Print</h3>
-								<p><strong>RM 0.50</strong> per page.</p>
+								<p><strong>RM 1.00</strong> per page.</p>
 							</div>
 						</div>
 					</div>

@@ -2,6 +2,7 @@
 session_start();
 require ('../database/staffregister.php');
 require ('../database/viewprice.php');
+require ('../database/masukprice.php');
 ?>
 
 <!DOCTYPE html>
@@ -172,7 +173,7 @@ require ('../database/viewprice.php');
             </div>
             <div class="card-body">
 
-                    <form class="form-horizontal" action="" method="post" name="calcpage" id="calcpage">
+                    <form class="form-horizontal" action="" method="post" name="calcpage">
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input"></label>
@@ -184,14 +185,14 @@ require ('../database/viewprice.php');
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Black Print :</label>
                         <div class="col-md-9">
-                          <input type="number" class="form-control" name="black" id="black" min="0" required>
+                          <input type="number" class="form-control" id="black" min="0" >
                         </div>
                       </div>
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Colour :</label>
                         <div class="col-md-9">
-                          <input type="number" class="form-control" name="colour" id="colour" min="0" required>
+                          <input type="number" class="form-control" id="colour" min="0" >
                         </div>
                       </div>
 
@@ -201,10 +202,10 @@ require ('../database/viewprice.php');
                           <?php
                           if( $binding1  == 1)
                           {
-                            echo '<input type="text" class="form-control" value="Binding Comb - RM 1.00" disabled><input type="hidden" name="binding" id="binding" value="1">';
+                            echo '<input type="text" class="form-control" value="Binding Comb - RM 1.00" disabled><input type="hidden" id="binding" value="1">';
                           } else
                           {
-                            echo '<input type="text" class="form-control" value="Binding Tape - RM 0.50" disabled><input type="hidden" name="binding" id="binding" value="0.5">';
+                            echo '<input type="text" class="form-control" value="Binding Tape - RM 0.50" disabled><input type="hidden" id="binding" value="0.5">';
                           }  
                           ?>
                         </div>
@@ -216,13 +217,13 @@ require ('../database/viewprice.php');
                           <?php
                           if( $transparent1  == 1)
                           {
-                            echo '<input type="text" class="form-control" value="2 pieces - RM 1.00" disabled><input type="hidden" name="transparent" id="transparent" value="1">';
+                            echo '<input type="text" class="form-control" value="2 pieces - RM 1.00" disabled><input type="hidden" id="transparent" value="1">';
                           } else if( $transparent1  == 2)
                           {
-                            echo '<input type="text" class="form-control" value="1 pieces - RM 0.50" disabled><input type="hidden" name="transparent" id="transparent" value="0.5">';
+                            echo '<input type="text" class="form-control" value="1 pieces - RM 0.50" disabled><input type="hidden" id="transparent" value="0.5">';
                           } else
                           {
-                            echo '<input type="text" class="form-control" value="Did not use transparent - RM 0" disabled><input type="hidden" name="transparent" id="transparent" value="0">';
+                            echo '<input type="text" class="form-control" value="Did not use transparent - RM 0" disabled><input type="hidden" id="transparent" value="0">';
                           }  
                           ?>
                         </div>
@@ -242,11 +243,11 @@ require ('../database/viewprice.php');
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Total :</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" name="totalm" id="totalm" min="0" required>
+                          <input type="text" class="form-control" name="harga" id="totalm">
                         </div>
                       </div>     
                       
-                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
+                      <button class="btn btn-sm btn-primary" type="submit" name="masukharga">
                       <i class="fa fa-dot-circle-o"></i> Submit</button>
                         <button class="btn btn-sm btn-danger" type="reset">
                       <i class="fa fa-ban"></i> Reset</button>
@@ -328,7 +329,7 @@ require ('../database/viewprice.php');
             </div>
             <div class="card-body">
 
-                   
+                   <!-- do something here -->
 
             </div>
           </div>

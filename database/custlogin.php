@@ -44,12 +44,16 @@
                }
                else
                {
-                   echo 'Fail to Login!';
+                   echo '<script language="javascript">';
+                   echo 'alert("Fail to Login!");';
+                   echo '</script>'; 
                }
            }
     }
     else {
-        echo "INVALID USERNAME/PASSWORD Combination!";
+        echo '<script language="javascript">';
+        echo 'alert("INVALID USERNAME/PASSWORD Combination!");';
+        echo '</script>'; 
     }
     $stmt->close();
 }

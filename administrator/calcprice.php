@@ -1,6 +1,7 @@
 <?php
 session_start();
 require ('../database/staffregister.php');
+require ('../database/viewprice.php');
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,29 @@ require ('../database/staffregister.php');
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- calculationScript -->
+  <script language = "JavaScript">
+    
+    function calculate()
+    {
+      var val1 = parseFloat(document.calcpage.black.value);
+      var val2 = parseFloat(document.calcpage.colour.value);
+      var val3 = parseFloat(document.calcpage.binding.value);
+      var val4 = parseFloat(document.calcpage.transparent.value);
+      
+      document.calcpage.totalm.value = sum(val1, val2, val3, val4);
+      
+    }
+    
+    function sum(val1, val2, val3, val4)
+    {
+      var b = (val1 * 0.1)
+      var c = (val2 * 1)
+      var t = b + c + (val3 + val4)
+      return (t);
+    }
+  </script>
 
 </head>
 
@@ -148,30 +172,80 @@ require ('../database/staffregister.php');
             </div>
             <div class="card-body">
 
-                    <form class="form-horizontal" action="" method="post">
+                    <form class="form-horizontal" action="" method="post" name="calcpage" id="calcpage">
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input"></label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="fullname" required autofocus>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Pages</label>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Black Print :</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="username" required>
+                          <input type="number" class="form-control" name="black" id="black" min="0" required>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Colour :</label>
                         <div class="col-md-9">
-                          <input type="number" class="form-control" id="textfield-input" name="usernumber" min="0" required>
+                          <input type="number" class="form-control" name="colour" id="colour" min="0" required>
                         </div>
-                      </div>          
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Binding :</label>
+                        <div class="col-md-9">
+                          <?php
+                          if( $binding1  == 1)
+                          {
+                            echo '<input type="text" class="form-control" value="Binding Comb - RM 1.00" disabled><input type="hidden" name="binding" id="binding" value="1">';
+                          } else
+                          {
+                            echo '<input type="text" class="form-control" value="Binding Tape - RM 0.50" disabled><input type="hidden" name="binding" id="binding" value="0.5">';
+                          }  
+                          ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Transparent :</label>
+                        <div class="col-md-9">
+                          <?php
+                          if( $transparent1  == 1)
+                          {
+                            echo '<input type="text" class="form-control" value="2 pieces - RM 1.00" disabled><input type="hidden" name="transparent" id="transparent" value="1">';
+                          } else if( $transparent1  == 2)
+                          {
+                            echo '<input type="text" class="form-control" value="1 pieces - RM 0.50" disabled><input type="hidden" name="transparent" id="transparent" value="0.5">';
+                          } else
+                          {
+                            echo '<input type="text" class="form-control" value="Did not use transparent - RM 0" disabled><input type="hidden" name="transparent" id="transparent" value="0">';
+                          }  
+                          ?>
+                        </div>
+                      </div><br>
+
+                      <a class="btn btn-sm btn-primary text-light" onclick="calculate()">Calculate
+                      <i class="fa fa-calculator"></i></a>
 
                       <br><br>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input"></label>
+                        <div class="col-md-9">
+                        <label class="col-form-label" for="textfield-input">Price in RM</label>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Total :</label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" name="totalm" id="totalm" min="0" required>
+                        </div>
+                      </div>     
+                      
                       <button class="btn btn-sm btn-primary" type="submit" name="submit">
                       <i class="fa fa-dot-circle-o"></i> Submit</button>
                         <button class="btn btn-sm btn-danger" type="reset">
@@ -243,6 +317,25 @@ require ('../database/staffregister.php');
 
         <!-- End of row -->
           </div>
+
+
+
+          <!-- Pay paypal -->
+          <div class="col-lg-6">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-info">
+              <h6 class="m-0 font-weight-bold text-gray-100">Paypal pay</h6>
+            </div>
+            <div class="card-body">
+
+                   
+
+            </div>
+          </div>
+          </div>
+
+
+
 
         </div>
         <!-- End of Page Content -->

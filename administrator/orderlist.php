@@ -195,7 +195,7 @@ session_start();
                                   <td> $file </td>
                                   <td> $date </td>
                                   <td>";  echo '
-                                  <a href="#" class="btn btn-primary btn-icon-split">
+                                  <a href="calcprice.php?id=' . " $orderid " . ' " class="btn btn-primary btn-icon-split">
                                   <span class="text">Assign</span></a>
                                   <a href="../database/rejectorder.php?id=' . " $orderid " . ' " class="btn btn-danger btn-icon-split">
                                   <span class="text">Reject</span></a>

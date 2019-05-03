@@ -131,10 +131,6 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item text-gray-900">STEP 1: Order</li>
-        </ol>
-
                 <div class="card shadow mb-4">
                 <div class="card-header p-3 bg-gray-900">
               <h6 class="m-0 font-weight-bold text-gray-100">Booking Order</h6>

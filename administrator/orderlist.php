@@ -192,7 +192,10 @@ session_start();
                                      echo "Colour";
                                    }  
                                   echo " </td>
-                                  <td> $file </td>
+                                  <td>";  echo '
+                                  <a href="../database/viewpdf.php?id=' . " $orderid " . ' " class="btn btn-bg-gray-900 btn-circle">
+                                  <i class="fas fa-print"></i></a>
+                                  '; echo " </td>
                                   <td> $date </td>
                                   <td>";  echo '
                                   <a href="calcprice.php?id=' . " $orderid " . ' " class="btn btn-primary btn-icon-split">

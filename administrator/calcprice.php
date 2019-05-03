@@ -30,7 +30,6 @@ require ('../database/masukprice.php');
 
   <!-- calculationScript -->
   <script language = "JavaScript">
-    
     function calculate()
     {
       var val1 = parseFloat(document.calcpage.black.value);
@@ -39,7 +38,6 @@ require ('../database/masukprice.php');
       var val4 = parseFloat(document.calcpage.transparent.value);
       
       document.calcpage.totalm.value = sum(val1, val2, val3, val4);
-      
     }
     
     function sum(val1, val2, val3, val4)
@@ -94,7 +92,7 @@ require ('../database/masukprice.php');
 
       <!-- Nav register staff -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="registerstaff.php">
           <i class="fas fa-fw fa-user"></i>
           <span>Staff Registration</span></a>
       </li>
@@ -318,25 +316,6 @@ require ('../database/masukprice.php');
 
         <!-- End of row -->
           </div>
-
-
-
-          <!-- Pay paypal -->
-          <div class="col-lg-6">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Paypal pay</h6>
-            </div>
-            <div class="card-body">
-
-                   <!-- do something here -->
-
-            </div>
-          </div>
-          </div>
-
-
-
 
         </div>
         <!-- End of Page Content -->

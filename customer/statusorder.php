@@ -150,8 +150,7 @@
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
-                      <th>Message</th>
-                      <th>Status</th>
+                      <th>Status *Clickable</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -159,7 +158,6 @@
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
-                      <th>Message</th>
                       <th>Status</th>
                     </tr>
                   </tfoot>
@@ -168,14 +166,14 @@
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh, statusorder, mesej FROM custorder WHERE custusername='".$_SESSION['username']."' ")) 
+                      if ($stmt = $conn->prepare("SELECT custorderID, warna, fileprint, tarikh, statusorder FROM custorder WHERE custusername='".$_SESSION['username']."' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($colour, $file, $date, $status, $mesej);
+                          $stmt->bind_result($custid, $colour, $file, $date, $status);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
@@ -194,7 +192,6 @@
                                   echo " </td>
                                   <td> $file </td>
                                   <td> $date </td>
-                                  <td> $mesej </td>
                                   <td>"; 
                                   
                                   if($status == 0)
@@ -204,6 +201,10 @@
                                   else if($status == 1)
                                   {
                                     echo ' <span class="label danger">Reject</span>  ';
+                                  } 
+                                  else if($status == 3)
+                                  {
+                                    echo ' <a href="payorder.php?id=' . " $custid " . ' " class="label info"><span class="text">Pay NOW!!</span></a>  ';
                                   } 
                                   else
                                   {

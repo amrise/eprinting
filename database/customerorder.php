@@ -22,13 +22,21 @@
 	$binding = $_POST['binding'];
 	$transparent = $_POST['transparent'];
 	$amount = $_POST['amount'];
-	$failprint = $_POST['failorder'];
 	$statusorder = "0"; 
+
+	// document file
+	$file = rand(1000,100000)."-".$_FILES['failorder']['name'];
+	$file_loc = $_FILES['failorder']['tmp_name'];
+	$file_size = $_FILES['failorder']['size'];
+ 	$file_type = $_FILES['failorder']['type'];
+	$folder="../pdfupload/";
+	 
+	// upload pdf to path pdfupload
+	move_uploaded_file($file_loc,$folder.$file);
   
 	// prepare and bind
 	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone, custusername) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?, ?)");
-	$stmt->bind_param("iiiibisis", $warna, $binding, $transparent, $amount, $failprint, $statusorder, $namacust, $nomborcust, $usercust);
-	$stmt->send_long_data(4, $failprint);
+	$stmt->bind_param("iiiisisis", $warna, $binding, $transparent, $amount, $file, $statusorder, $namacust, $nomborcust, $usercust);
 	$stmt->execute();
 						
 	if($stmt)

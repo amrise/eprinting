@@ -178,12 +178,10 @@ session_start();
 
                           /* fetch values */
                           while ($stmt->fetch()) 
-                          {
-
-                              echo "
+                          { ?>
                                 <tr>
-                                  <td>";
-                                  
+                                  <td>
+                                  <?php
                                   if( $colour  == 1)
                                    {
                                      echo "Black and White";
@@ -191,21 +189,20 @@ session_start();
                                    {
                                      echo "Colour";
                                    }  
-                                  echo " </td>
-                                  <td>";  echo '
-                                  <a href="../database/viewpdf.php?id=' . " $orderid " . ' " class="btn btn-bg-gray-900 btn-circle">
+                                   ?>
+                                  </td>
+                                  <td>
+                                  <a href="../pdfupload/<?php echo $file ?>" class="btn btn-bg-gray-900 btn-circle" target="_blank">
                                   <i class="fas fa-print"></i></a>
-                                  '; echo " </td>
-                                  <td> $date </td>
-                                  <td>";  echo '
-                                  <a href="calcprice.php?id=' . " $orderid " . ' " class="btn btn-primary btn-icon-split">
+                                  </td>
+                                  <td><?php echo $date ?></td>
+                                  <td>
+                                  <a href="calcprice.php?id=<?php echo $orderid ?>" class="btn btn-primary btn-icon-split">
                                   <span class="text">Assign</span></a>
-                                  <a href="../database/rejectorder.php?id=' . " $orderid " . ' " class="btn btn-danger btn-icon-split">
+                                  <a href="../database/rejectorder.php?id=<?php echo $orderid ?> " class="btn btn-danger btn-icon-split">
                                   <span class="text">Reject</span></a>
-                                  ';
-                                  echo " </td>
-                                </tr>
-                                ";
+                                  </td>
+                                </tr> <?php
                           }
                           $stmt->close();
                         }

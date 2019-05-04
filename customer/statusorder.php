@@ -188,11 +188,11 @@
                                    } else
                                    {
                                      echo "Colour";
-                                   }  
-                                  echo " </td>
-                                  <td> $file </td>
-                                  <td> $date </td>
-                                  <td>"; 
+                                   }  ?>
+                                  </td>
+                                  <td><a href="../pdfupload/<?php echo $file ?>" target="_blank"> <i class="fas fa-file-pdf"></i></a></td>
+                                  <td><?php echo $date ?></td>
+                                  <td> <?php
                                   
                                   if($status == 0)
                                   {

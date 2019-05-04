@@ -136,7 +136,7 @@
               <h6 class="m-0 font-weight-bold text-gray-100">Booking Order</h6>
             </div>
                   <div class="card-body">
-                    <form class="form-horizontal" action="" method="post">
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label">Purchased Date :</label>
@@ -204,7 +204,7 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="file-input">File input</label>
+                        <label class="col-md-3 col-form-label" for="file-input">Document file :</label>
                         <div class="col-md-9">
                           <input id="file-input" type="file" name="failorder" accept="application/pdf">
                         </div>

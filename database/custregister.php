@@ -5,15 +5,13 @@ require ('connection.php');
 if(isset($_POST['submit'])){
 	$fullname = $_POST['fullname'];
 	$username = $_POST['username'];
-    $usernumber1 = $_POST['usernumber'];
-    $usernumber2 = "6";
-    $usernumber = $usernumber2.$usernumber1;
+    $usernumber = $_POST['usernumber'];
     $password = md5($_POST['password']);
     $akaun = "0";
 
 
 $stmt = $conn->prepare("INSERT INTO users (fullname, username, usernumber, password, account) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("ssisi", $fullname, $username, $usernumber, $password, $akaun);
+$stmt->bind_param("ssssi", $fullname, $username, $usernumber, $password, $akaun);
 $stmt->execute();
 
 if ($conn) {

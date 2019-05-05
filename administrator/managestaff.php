@@ -59,6 +59,13 @@ session_start();
           <span>Order List</span></a>
       </li>
 
+      <!-- Nav order list -->
+      <li class="nav-item active">
+        <a class="nav-link" href="orderstatus.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Order Payed</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

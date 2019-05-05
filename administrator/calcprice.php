@@ -1,6 +1,5 @@
 <?php
 session_start();
-require ('../database/staffregister.php');
 require ('../database/viewprice.php');
 require ('../database/masukprice.php');
 ?>
@@ -36,15 +35,17 @@ require ('../database/masukprice.php');
       var val2 = parseFloat(document.calcpage.colour.value);
       var val3 = parseFloat(document.calcpage.binding.value);
       var val4 = parseFloat(document.calcpage.transparent.value);
+      var val5 = parseFloat(document.calcpage.nilai.value);
       
-      document.calcpage.totalm.value = sum(val1, val2, val3, val4);
+      document.calcpage.totalm.value = sum(val1, val2, val3, val4, val5);
     }
     
-    function sum(val1, val2, val3, val4)
+    function sum(val1, val2, val3, val4, val5)
     {
       var b = (val1 * 0.1)
       var c = (val2 * 1)
-      var t = b + c + (val3 + val4)
+      var g = b + c + (val3 + val4)
+      var t = g * val5
       return (t);
     }
   </script>
@@ -80,6 +81,13 @@ require ('../database/masukprice.php');
         <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order List</span></a>
+      </li>
+
+      <!-- Nav order list -->
+      <li class="nav-item active">
+        <a class="nav-link" href="orderstatus.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Order Payed</span></a>
       </li>
 
       <!-- Divider -->
@@ -161,8 +169,6 @@ require ('../database/masukprice.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-        <div class="row">
-
         <!-- Calculate Price -->
         <div class="col-lg-6">
           <div class="card shadow mb-4">
@@ -225,6 +231,13 @@ require ('../database/masukprice.php');
                           }  
                           ?>
                         </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Print Amount:</label>
+                        <div class="col-md-9">
+                        <input type="text" class="form-control" value="<?php echo $amount1 ?>" disabled><input type="hidden" id="nilai" value="<?php echo $amount1 ?>">
+                        </div>
                       </div><br>
 
                       <a class="btn btn-sm btn-primary text-light" onclick="calculate()">Calculate
@@ -247,74 +260,11 @@ require ('../database/masukprice.php');
                       
                       <button class="btn btn-sm btn-primary" type="submit" name="masukharga">
                       <i class="fa fa-dot-circle-o"></i> Submit</button>
-                        <button class="btn btn-sm btn-danger" type="reset">
-                      <i class="fa fa-ban"></i> Reset</button>
 
                     </form>
 
             </div>
           </div>
-          </div>
-
-
-
-        <!-- Assign to staff -->
-          <div class="col-lg-6">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Assign to Staff</h6>
-            </div>
-            <div class="card-body">
-
-                    <form class="form-horizontal" action="" method="post">
-
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Staff Name :</label>
-                        <div class="col-md-9">
-
-                        <?php
-                        require ('../database/connection.php');
-
-                        if ($stmt = $conn->prepare("SELECT fullname FROM users WHERE account='2' ")) 
-                        {
-                          
-                          /* execute statement */
-                          $stmt->execute();
-
-                          /* bind result variables */
-                          $stmt->bind_result($fullname);
-
-                          echo "<select class='form-control' id='textfield-input' name='staffname' required>";
-
-                          /* fetch values */
-                          while ($stmt->fetch()) 
-                          {
-                            echo"<option value='$fullname'>$fullname</option>";
-                          }
-                          $stmt->close();
-
-                          echo "</select>";
-                          
-                         }
-                         $conn->close();
-                          ?>
-                        </div>
-                      </div>
-                      
-
-                      <br><br>
-                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
-                      <i class="fa fa-dot-circle-o"></i> Submit</button>
-                        <button class="btn btn-sm btn-danger" type="reset">
-                      <i class="fa fa-ban"></i> Reset</button>
-
-                    </form>
-
-            </div>
-          </div>
-          </div>
-
-        <!-- End of row -->
           </div>
 
         </div>

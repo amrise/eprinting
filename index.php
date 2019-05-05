@@ -84,8 +84,8 @@
 					<div class="col-md-3 text-center">
 						<div class="mz-module">
 							<div class="mz-module-about">
-								<h3>Print 100+ pages</h3>
-								<p><strong>RM 0.10</strong> per page for black and colour.</p>
+							<h3>Black Print</h3>
+								<p><strong>RM 0.10</strong> per page.</p><br>
 							</div>
 						</div>
 					</div>
@@ -94,8 +94,6 @@
 					<div class="col-md-3 text-center">
 						<div class="mz-module">
 							<div class="mz-module-about">
-								<h3>Black Print</h3>
-								<p><strong>RM 0.10</strong> per page.</p><br>
 								<h3>Colour Print</h3>
 								<p><strong>RM 1.00</strong> per page.</p>
 							</div>
@@ -149,10 +147,10 @@
 							</div>
 						</div>
 						<div class="featured-item">
-							<div class="featured-icon"><i class="fa fa-qrcode"></i></div>
+							<div class="featured-icon"><i class="fa fa-envelope-o"></i></div>
 							<div class="featured-text">
-								<h4>Qrcode transaction</h4>
-								<p>You can use your given Qrcode to take your printing purchased order.</p>
+								<h4>Give remainder</h4>
+								<p>We will notify you by email when the printing is done.</p>
 							</div>
 						</div>
 					</div>
@@ -178,13 +176,6 @@
 							<div class="featured-text">
 								<h4>Record Purchased</h4>
 								<p>Status of printing booking order can view either the printing still in process or done printing.</p>
-							</div>
-						</div>
-						<div class="featured-item">
-							<div class="featured-icon"><i class="fa fa-envelope-o"></i></div>
-							<div class="featured-text">
-								<h4>Give remainder</h4>
-								<p>We will notify you by email when the printing is done.</p>
 							</div>
 						</div>
 					</div>

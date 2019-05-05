@@ -1,6 +1,7 @@
 <?php
 session_start();
-require ('../database/staffregister.php');
+require ('../database/viewprice.php');
+require ('../database/givejob.php');
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +77,7 @@ require ('../database/staffregister.php');
 
       <!-- Nav register staff -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="registerstaff.php">
           <i class="fas fa-fw fa-user"></i>
           <span>Staff Registration</span></a>
       </li>
@@ -145,47 +146,59 @@ require ('../database/staffregister.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          
+
+        <!-- Assign to staff -->
+          <div class="col-lg-6">
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Create Staff Account</h6>
+              <h6 class="m-0 font-weight-bold text-gray-100">Assign to Staff</h6>
             </div>
             <div class="card-body">
 
                     <form class="form-horizontal" action="" method="post">
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Staff Name :</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="fullname" required autofocus>
+
+                        <?php
+                        require ('../database/connection.php');
+
+                        if ($stmt = $conn->prepare("SELECT fullname FROM users WHERE account='2' ")) 
+                        {
+                          
+                          /* execute statement */
+                          $stmt->execute();
+
+                          /* bind result variables */
+                          $stmt->bind_result($fullname);
+
+                          echo "<select class='form-control' id='textfield-input' name='staffname' required>";
+
+                          /* fetch values */
+                          while ($stmt->fetch()) 
+                          {
+                            echo"<option value='$fullname'>$fullname</option>";
+                          }
+                          $stmt->close();
+
+                          echo "</select>";
+                          
+                         }
+                         $conn->close();
+                          ?>
                         </div>
                       </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="username" required>
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
-                        <div class="col-md-9">
-                          <input type="number" class="form-control" id="textfield-input" name="usernumber" min="0" required>
-                        </div>
-                      </div>          
+                      
 
                       <br><br>
-                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
-                      <i class="fa fa-dot-circle-o"></i> Submit</button>
-                        <button class="btn btn-sm btn-danger" type="reset">
-                      <i class="fa fa-ban"></i> Reset</button>
+                      <button class="btn btn-sm btn-primary" type="submit" name="assignjob">
+                      <i class="fa fa-dot-circle-o"></i> Assign</button>
 
                     </form>
 
-
-
             </div>
+          </div>
           </div>
 
         </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require ('../database/staffregister.php');
+require ('../database/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ require ('../database/staffregister.php');
         Customer
       </div>
 
-      <!-- Nav Item - Tables -->
+      <!-- Nav order list -->
       <li class="nav-item active">
         <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
@@ -61,7 +61,7 @@ require ('../database/staffregister.php');
 
       <!-- Nav order list -->
       <li class="nav-item active">
-        <a class="nav-link" href="orderstatus.php">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>Order Payed</span></a>
       </li>
@@ -76,14 +76,14 @@ require ('../database/staffregister.php');
 
       <!-- Nav register staff -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="registerstaff.php">
           <i class="fas fa-fw fa-user"></i>
           <span>Staff Registration</span></a>
       </li>
 
       <!-- Nav manage staff -->
       <li class="nav-item active">
-        <a class="nav-link" href="managestaff.php">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>Manage staff</span></a>
       </li>
@@ -146,50 +146,73 @@ require ('../database/staffregister.php');
         <div class="container-fluid">
 
           
+          <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Create Staff Account</h6>
+              <h6 class="m-0 font-weight-bold text-gray-100">Assign to Staff</h6>
             </div>
             <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Customer Name</th>
+                      <th>Phone No</th>
+                      <th>Date</th>
+                      <th>Assign Task</th>
+                      <th>Staff Assigned</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                      <th>Customer Name</th>
+                      <th>Phone No</th>
+                      <th>Date</th>
+                      <th>Assign Task</th>
+                      <th>Staff Assigned</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                   
+                    <?php
+                      require ('../database/connection.php');
 
-                    <form class="form-horizontal" action="" method="post">
+                      if ($stmt = $conn->prepare("SELECT custorderID, nama, phone, statusorder, tarikh, staffusername FROM custorder WHERE statusorder='2' ")) 
+                        {
+                          
+                          /* execute statement */
+                          $stmt->execute();
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="fullname" required autofocus>
-                        </div>
-                      </div>
+                          /* bind result variables */
+                          $stmt->bind_result($userid, $nama, $phone, $statusorder, $tarikh, $staffusername);
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
-                        <div class="col-md-9">
-                          <input type="text" class="form-control" id="textfield-input" name="username" required>
-                        </div>
-                      </div>
+                          /* fetch values */
+                          while ($stmt->fetch()) 
+                          { ?>
+                                <tr>
+                                  <td><?php echo $nama ?></td>
+                                  <td><?php echo $phone ?></td>
+                                  <td><?php echo $tarikh ?></td>
+                                  <td>
+                                  <a href="assignjob.php?id=<?php echo $userid ?>" class="btn btn-primary btn-icon-split">
+                                  <span class="text">Assign</span></a>
+                                  </td>
+                                  <td><?php echo $staffusername ?></td>
+                                </tr> <?php
+                          }
+                          $stmt->close();
+                        }
+                          $conn->close();
+                      ?>      
 
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
-                        <div class="col-md-9">
-                          <input type="number" class="form-control" id="textfield-input" name="usernumber" min="0" required>
-                        </div>
-                      </div>          
-
-                      <br><br>
-                      <button class="btn btn-sm btn-primary" type="submit" name="submit">
-                      <i class="fa fa-dot-circle-o"></i> Submit</button>
-                        <button class="btn btn-sm btn-danger" type="reset">
-                      <i class="fa fa-ban"></i> Reset</button>
-
-                    </form>
-
-
-
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
         </div>
-        <!-- End of Page Content -->
+        <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
@@ -254,3 +277,5 @@ require ('../database/staffregister.php');
 </body>
 
 </html>
+
+

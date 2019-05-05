@@ -135,7 +135,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -196,11 +195,15 @@
                                   
                                   if($status == 0)
                                   {
-                                    echo ' <span class="label warning">In Process</span>  ';
+                                    echo ' <span class="label warning">Pending</span>  ';
                                   } 
                                   else if($status == 1)
                                   {
                                     echo ' <span class="label danger">Reject</span>  ';
+                                  } 
+                                  else if($status == 2)
+                                  {
+                                    echo ' <span class="label warning">In Process</span> ';
                                   } 
                                   else if($status == 3)
                                   {
@@ -226,6 +229,13 @@
               </div>
             </div>
           </div>
+
+          <u><b>IMPORTANT</b>. Please read carefully for each status.</u><br><br>
+          1. <span class="label warning">Pending</span> = <b>Please wait your booking order from our reply.</b> <br><br>
+          2. <span class="label info">Pay NOW!!</span> = <b>Please click button Pay NOW!! to make your payment. We will process your order after payment have been made.</b> <br><br>
+          3. <span class="label danger">Reject</span> = <b>Your document have a problem that we can't proceed to print. Please resubmit your order.</b> <br><br>
+          4. <span class="label warning">In Process</span> = <b>We are in processing your printing order. It may takes 1 or 2 days. </b> <br><br>
+          5. <span class="label success">Done</span> = <b>Your order is complete. Please take your document at printing centre. TQ!</b> <br><br><br>
 
         </div>
         <!-- /.container-fluid -->

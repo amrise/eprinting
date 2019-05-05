@@ -23,6 +23,7 @@
 	$transparent = $_POST['transparent'];
 	$amount = $_POST['amount'];
 	$statusorder = "0"; 
+	$rombak = rand(1000,100000);
 
 	// document file
 	$file = rand(1000,100000)."-".$_FILES['failorder']['name'];
@@ -35,8 +36,8 @@
 	move_uploaded_file($file_loc,$folder.$file);
   
 	// prepare and bind
-	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone, custusername) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?, ?)");
-	$stmt->bind_param("iiiisisis", $warna, $binding, $transparent, $amount, $file, $statusorder, $namacust, $nomborcust, $usercust);
+	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone, custusername, rombak) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?)");
+	$stmt->bind_param("iiiisissss", $warna, $binding, $transparent, $amount, $file, $statusorder, $namacust, $nomborcust, $usercust, $rombak);
 	$stmt->execute();
 						
 	if($stmt)

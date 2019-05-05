@@ -58,6 +58,13 @@ session_start();
           <span>Order List</span></a>
       </li>
 
+      <!-- Nav order list -->
+      <li class="nav-item active">
+        <a class="nav-link" href="orderstatus.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Order Payed</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -151,7 +158,7 @@ session_start();
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
-                      <th>Assign Task</th>
+                      <th>Manage</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -159,7 +166,7 @@ session_start();
                       <th>Colour</th>
                       <th>File</th>
                       <th>Date</th>
-                      <th>Assign Task</th>
+                      <th>Manage</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -198,7 +205,7 @@ session_start();
                                   <td><?php echo $date ?></td>
                                   <td>
                                   <a href="calcprice.php?id=<?php echo $orderid ?>" class="btn btn-primary btn-icon-split">
-                                  <span class="text">Assign</span></a>
+                                  <span class="text">Accept</span></a>
                                   <a href="../database/rejectorder.php?id=<?php echo $orderid ?> " class="btn btn-danger btn-icon-split">
                                   <span class="text">Reject</span></a>
                                   </td>

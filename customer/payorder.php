@@ -213,8 +213,8 @@
                         <label class="col-md-3 col-form-label" for="textfield-input">Total Pay :</label>
                         <div class="col-md-9">
                           <input type="number" class="form-control" value="<?php echo $price1; ?>" disabled>
-                          <input type="text" class="form-control" name="bayar" value="<?php echo $price1; ?>">
-                          <input type="text" class="form-control" name="namacust" value="<?php echo $nama1; ?>">
+                          <input type="hidden" class="form-control" name="bayar" value="<?php echo $price1; ?>">
+                          <input type="hidden" class="form-control" name="namacust" value="<?php echo $nama1; ?>">
                         </div>
                       </div><br>
 

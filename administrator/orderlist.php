@@ -199,7 +199,7 @@ session_start();
                                    ?>
                                   </td>
                                   <td>
-                                  <a href="../pdfupload/<?php echo $file ?>" class="btn btn-bg-gray-900 btn-circle" target="_blank">
+                                  <a href="../pdfupload/<?php echo $file ?>" target="_blank">
                                   <i class="fas fa-print"></i></a>
                                   </td>
                                   <td><?php echo $date ?></td>

@@ -3,6 +3,20 @@ session_start();
 include('../database/updateprofile.php'); 
 ?>
 
+<?php
+      $stmt = $conn->prepare("SELECT fullname FROM users WHERE username = '".$_SESSION['username']."'; ");
+      $stmt->execute();
+      $stmt->bind_result($fullname);
+
+     /* fetch values */
+     while ($stmt->fetch()) 
+      {
+      $fullname1 = $fullname;
+      }
+      $stmt->close();
+      $conn->close();
+?>   
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +28,7 @@ include('../database/updateprofile.php');
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Tables</title>
+  <title>UTeM e-Printing</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -122,13 +136,6 @@ include('../database/updateprofile.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <u><b>IMPORTANT</b>. Please read carefully.</u><br>
-          1. To start printing the document. Please click the .pdf file.<br>
-          2. To get more information about task. Please click  <span class="btn btn-info btn-circle btn-sm"><span class="fas fa-info-circle"></span></span> button.<br>
-          3. Please click <span class="btn btn-success btn-circle btn-sm"><span class="fas fa-check"></span></span> button when the printing is done.<br>
-          4. If you can't complete a printing task. Please click <span class="btn btn-warning btn-circle btn-sm"><span class="fas fa-exclamation-triangle"></span></span> to report problem to administrator.<br><br>
-
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-gray-900">
@@ -141,16 +148,22 @@ include('../database/updateprofile.php');
                     <tr>
                       <th>Date Assigned</th>
                       <th>Colour</th>
+                      <th>Binding</th>
+                      <th>Transparent</th>
+                      <th>Amount</th>
                       <th>File</th>
-                      <th>List Task</th>
+                      <th>Manage</th>
                     </tr>
                   </thead>
                   <tfoot>
                      <tr>
                       <th>Date Assigned</th>
                       <th>Colour</th>
+                      <th>Binding</th>
+                      <th>Transparent</th>
+                      <th>Amount</th>
                       <th>File</th>
-                      <th>List Task</th>
+                      <th>Manage</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -158,45 +171,61 @@ include('../database/updateprofile.php');
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, fileprint, tarikh FROM custorder WHERE staffusername='".$_SESSION['username']."' ")) 
+                      if ($stmt = $conn->prepare("SELECT fileprint, tarikh, warna, binding, transparent, amount, rombak FROM taskprint WHERE staffname='$fullname1' AND statusprint='0' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($colour, $file, $date);
+                          $stmt->bind_result($fileprint, $tarikh, $warna, $binding, $transparent, $amount, $rombak);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
-                          {
-                              echo "
+                          { ?>
                                 <tr>
-                                  <td> $date </td>
-                                  <td>";
-                                  
-                                  if( $colour  == 1)
+                                  <td><?php echo $tarikh ?></td>
+                                  <td><?php
+                                  if( $warna  == 1)
                                    {
                                      echo "Black and White";
                                    } else
                                    {
                                      echo "Colour";
-                                   }  
-                                  echo " </td>
-                                  <td>";  echo '
-                                  <a href="#" class="btn btn-bg-gray-900 btn-circle">
+                                   }  ?>
+                                  </td>
+                                  <td><?php
+                                  if( $binding  == 1)
+                                   {
+                                     echo "Binding Comb";
+                                   } else
+                                   {
+                                     echo "Binding Tape";
+                                   }  ?>
+                                  </td>
+                                  <td><?php
+                                  if( $transparent  == 1)
+                                   {
+                                     echo "Front and Back";
+                                   } else if( $binding  == 2)
+                                   {
+                                     echo "Front only";
+                                   } else
+                                   {
+                                     echo "Didn't need";
+                                   }  ?>
+                                  </td>
+                                  <td><?php echo $amount ?></td>
+                                  <td>
+                                  <a href="../pdfupload/<?php echo $fileprint ?>" target="_blank">
                                   <i class="fas fa-print"></i></a>
-                                  '; echo " </td>
-                                  <td>";  echo '
-                                  <a href="#" class="btn btn-info btn-circle">
-                                  <i class="fas fa-info-circle"></i></a>
-                                  <a href="#" class="btn btn-success btn-circle">
+                                  </td>
+                                  <td>
+                                  <a href="../database/printdone.php?id=<?php echo $rombak ?>" class="btn btn-success btn-circle">
                                   <i class="fas fa-check"></i></a>
-                                  <a href="#" class="btn btn-warning btn-circle">
-                                  <i class="fas fa-exclamation-triangle"></i></a>
-                                  '; echo " </td>
-                                </tr>
-                                ";
+                                  </td>
+                                </tr><?php
+                              
                           }
                           $stmt->close();
                         }

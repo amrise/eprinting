@@ -64,8 +64,8 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
+      <li class="nav-item">
+        <a class="nav-link" href="statusorder.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Status Order</span></a>
       </li>
@@ -116,7 +116,7 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="historypay.php">
+                <a class="dropdown-item" href="#">
                   <i class="fas fa-dollar-sign fa-sm fa-fw mr-2 text-gray-400"></i>
                  Payment
                 </a>
@@ -139,25 +139,25 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-gray-900">
-              <h6 class="m-0 font-weight-bold text-gray-100">Status Order</h6>
+              <h6 class="m-0 font-weight-bold text-gray-100">Payment History</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Colour</th>
-                      <th>File</th>
+                      <th>ID</th>
+                      <th>Personal Info</th>
                       <th>Date</th>
-                      <th>Status *Clickable</th>
+                      <th>Amount</th>
                     </tr>
                   </thead>
                   <tfoot>
                      <tr>
-                      <th>Colour</th>
-                      <th>File</th>
+                      <th>ID</th>
+                      <th>Personal Info</th>
                       <th>Date</th>
-                      <th>Status</th>
+                      <th>Amount</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -165,57 +165,24 @@
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT custorderID, warna, fileprint, tarikh, statusorder FROM custorder WHERE custusername='".$_SESSION['username']."' ")) 
+                      if ($stmt = $conn->prepare("SELECT payID, payamount, paycustomer, tarikh FROM paymentcust WHERE paycustomer='$namacust' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($custid, $colour, $file, $date, $status);
+                          $stmt->bind_result($payID, $payamount, $paycustomer, $tarikh);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
                           {
                               echo "
                                 <tr>
-                                  <td>";
-                                  
-                                  if( $colour  == 1)
-                                   {
-                                     echo "Black and White";
-                                   } else
-                                   {
-                                     echo "Colour";
-                                   }  ?>
-                                  </td>
-                                  <td><a href="../pdfupload/<?php echo $file ?>" target="_blank"> <i class="fas fa-file-pdf"></i></a></td>
-                                  <td><?php echo $date ?></td>
-                                  <td> <?php
-                                  
-                                  if($status == 0)
-                                  {
-                                    echo ' <span class="label warning">Pending</span>  ';
-                                  } 
-                                  else if($status == 1)
-                                  {
-                                    echo ' <span class="label danger">Reject</span>  ';
-                                  } 
-                                  else if($status == 2)
-                                  {
-                                    echo ' <span class="label warning">In Process</span> ';
-                                  } 
-                                  else if($status == 3)
-                                  {
-                                    echo ' <a href="payorder.php?id=' . " $custid " . ' " class="label info"><span class="text">Pay NOW!!</span></a>  ';
-                                  } 
-                                  else
-                                  {
-                                    echo ' <span class="label success">Done</span>  ';
-                                  }       
-                                  
-                                  echo "
-                                  </td>
+                                  <td> $payID </td>
+                                  <td> $paycustomer </td>
+                                  <td> $tarikh </td>
+                                  <td> $payamount </td>
                                 </tr>
                                 ";
                           }
@@ -229,13 +196,6 @@
               </div>
             </div>
           </div>
-
-          <u><b>IMPORTANT</b>. Please read carefully for each status.</u><br><br>
-          1. <span class="label warning">Pending</span> = <b>Please wait your booking order from our reply.</b> <br><br>
-          2. <span class="label info">Pay NOW!!</span> = <b>Please click button Pay NOW!! to make your payment. We will process your order after payment have been made.</b> <br><br>
-          3. <span class="label danger">Reject</span> = <b>Your document have a problem that we can't proceed to print. Please resubmit your order.</b> <br><br>
-          4. <span class="label warning">In Process</span> = <b>We are in processing your printing order. It may takes 1 or 2 days. </b> <br><br>
-          5. <span class="label success">Done</span> = <b>Your order is complete. Please take your document at printing centre. TQ!</b> <br><br><br>
 
         </div>
         <!-- /.container-fluid -->

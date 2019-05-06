@@ -130,7 +130,7 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="historypay.php">
                   <i class="fas fa-dollar-sign fa-sm fa-fw mr-2 text-gray-400"></i>
                  Payment
                 </a>
@@ -159,7 +159,7 @@
             </div>
             <div class="card-body">
 
-                <form action="../payment.php" method="post">
+                <form action="../payment.php?id=<?php echo $custid1 ?>" method="post">
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Colour :</label>

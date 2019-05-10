@@ -150,6 +150,7 @@
                       <th>File</th>
                       <th>Date</th>
                       <th>Status *Clickable</th>
+                      <th>Manage</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -158,6 +159,7 @@
                       <th>File</th>
                       <th>Date</th>
                       <th>Status</th>
+                      <th>Manage</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -212,12 +214,32 @@
                                   else
                                   {
                                     echo ' <span class="label success">Done</span>  ';
-                                  }       
-                                  
-                                  echo "
+                                  }       ?>
+                                  </td>
+                                  <td> <?php
+                                  if($status == 0 )
+                                  {
+                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split">
+                                    <span class="text">Edit</span></a>
+                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i></a>  ';
+                                  } else if($status == 1 )
+                                  {
+                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split">
+                                    <span class="text">Edit</span></a>
+                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i></a>  ';
+                                  } else if($status == 3 )
+                                  {
+                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split">
+                                    <span class="text">Edit</span></a>
+                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i></a>  ';
+                                  } 
+                                  ?>
                                   </td>
                                 </tr>
-                                ";
+                                <?php
                           }
                           $stmt->close();
                         }

@@ -48,9 +48,6 @@
 							<a class="page-scroll" href="#features">Features</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="#portfolio">Portfolio</a>
-						</li>
-						<li>
 							<a class="page-scroll" href="#contact">Contact</a>
 						</li>
 						<li>
@@ -183,46 +180,6 @@
 			</div>
 		</section>
 
-		<!-- PORTFOLIO -->
-		<section id="portfolio" class="light-bg">
-			<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="section-title">
-						<h2>Portfolio</h2>
-						<p>Our business printing portfolio is growing in a couple of months since JANUARY 2019.</p>
-					</div>
-				</div>
-			</div>
-			</div><!-- end container -->
-		</section>
-
-		<!-- <section class="dark-bg short-section stats-bar">
-			<div class="container text-center">
-				<div class="row">
-					
-					<div class="col-md-4 mb-sm-30">
-						<div class="counter-item">
-							<h2 class="stat-number" data-n="167">0</h2>
-							<h6>Customer</h6>
-						</div>
-					</div>
-					<div class="col-md-4 mb-sm-30">
-						<div class="counter-item">
-							<h2 class="stat-number" data-n="6">0</h2>
-							<h6>Purchased Made</h6>
-						</div>
-					</div>
-					<div class="col-md-4 mb-sm-30">
-						<div class="counter-item">
-							<h2 class="stat-number" data-n="34">0</h2>
-							<h6>Purchased Delivered</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section> -->
-
 		
 
 		<section id="contact" class="dark-bg">
@@ -251,53 +208,6 @@
 							<p><i class="fa fa-clock-o"></i> <span class="day">Saturday:</span><span>9am to 1pm</span></p>
 							<p><i class="fa fa-clock-o"></i> <span class="day">Sunday:</span><span>Closed</span></p>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<form name="sentMessage" id="contactForm" novalidate="">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Your Name *" id="name" required="" data-validation-required-message="Please enter your name.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Your Email *" id="email" required="" data-validation-required-message="Please enter your email address.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Your Matric Card *" id="matric" required="" data-validation-required-message="Please enter your matric card.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Your Faculty *" id="faculty" required="" data-validation-required-message="Please enter your faculty.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<textarea class="form-control" placeholder="Your Message *" id="message" required="" data-validation-required-message="Please enter a message."></textarea>
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-12 text-center">
-									<div id="success"></div>
-									<button type="submit" class="btn">Send Message</button>
-								</div>
-							</div>
-						</form>
 					</div>
 				</div>
 			</div>

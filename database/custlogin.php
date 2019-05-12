@@ -39,7 +39,7 @@
                    $_SESSION['Logged'] = 2;
                    $_SESSION['username'] = $username;
                    echo '<script language="javascript">';
-			       echo 'window.location.href="staff/printinglist.php";';
+			       echo 'window.location.href="database/filterstaff.php";';
 			       echo '</script>'; 
                }
                else

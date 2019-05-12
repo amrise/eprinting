@@ -65,15 +65,15 @@ include('../database/updateprofile.php');
       </div>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
+      <li class="nav-item ">
+        <a class="nav-link" href="printinglist.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Printing List</span></a>
       </li>
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item ">
-        <a class="nav-link" href="complete.php">
+       <!-- Nav Item - Tables -->
+       <li class="nav-item active">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>Complete Print</span></a>
       </li>
@@ -143,31 +143,31 @@ include('../database/updateprofile.php');
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-gradient-success">
-              <h6 class="m-0 font-weight-bold text-gray-100">Printing List</h6>
+              <h6 class="m-0 font-weight-bold text-gray-100">Complete List</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Date Assigned</th>
+                      <th>Customer Name</th>
+                      <th>Date</th>
+                      <th>File</th>
                       <th>Colour</th>
                       <th>Binding</th>
-                      <th>Transparent</th>
-                      <th>Amount</th>
-                      <th>File</th>
-                      <th>Manage</th>
+                      <th>Tranparent</th>
+                      <th>Contact No</th>
                     </tr>
                   </thead>
                   <tfoot>
                      <tr>
-                      <th>Date Assigned</th>
+                      <th>Customer Name</th>
+                      <th>Date</th>
+                      <th>File</th>
                       <th>Colour</th>
                       <th>Binding</th>
-                      <th>Transparent</th>
-                      <th>Amount</th>
-                      <th>File</th>
-                      <th>Manage</th>
+                      <th>Tranparent</th>
+                      <th>Contact No</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -175,20 +175,25 @@ include('../database/updateprofile.php');
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT fileprint, tarikh, warna, binding, transparent, amount, rombak FROM taskprint WHERE staffname='$fullname1' AND statusprint='0' ")) 
+                      if ($stmt = $conn->prepare("SELECT warna, binding, transparent, fileprint, nama, phone, tarikh FROM custorder WHERE staffusername='$fullname1' AND statusorder='4' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($fileprint, $tarikh, $warna, $binding, $transparent, $amount, $rombak);
+                          $stmt->bind_result($warna, $binding, $transparent, $fileprint, $nama, $phone, $tarikh);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
                           { ?>
                                 <tr>
+                                  <td><?php echo $nama ?></td>
                                   <td><?php echo $tarikh ?></td>
+                                  <td>
+                                  <a href="../pdfupload/<?php echo $fileprint ?>" target="_blank">
+                                  <i class="fas fa-print"></i></a>
+                                  </td>
                                   <td><?php
                                   if( $warna  == 1)
                                    {
@@ -219,15 +224,7 @@ include('../database/updateprofile.php');
                                      echo "Didn't need";
                                    }  ?>
                                   </td>
-                                  <td><?php echo $amount ?></td>
-                                  <td>
-                                  <a href="../pdfupload/<?php echo $fileprint ?>" target="_blank">
-                                  <i class="fas fa-print"></i></a>
-                                  </td>
-                                  <td>
-                                  <a href="../database/printdone.php?id=<?php echo $rombak ?>" class="btn btn-success btn-circle">
-                                  <i class="fas fa-check"></i></a>
-                                  </td>
+                                  <td><?php echo $phone ?></td>
                                 </tr><?php
                               
                           }

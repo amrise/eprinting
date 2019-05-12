@@ -43,7 +43,16 @@ require ('../database/staffregister.php');
         <div class="sidebar-brand-text mx-3">E-Printing</div>
       </a>
 
-     
+     <!-- Divider -->
+     <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="dashboard.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -53,14 +62,14 @@ require ('../database/staffregister.php');
       </div>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order List</span></a>
       </li>
 
       <!-- Nav order list -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="orderstatus.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order Payed</span></a>
@@ -82,7 +91,7 @@ require ('../database/staffregister.php');
       </li>
 
       <!-- Nav manage staff -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="managestaff.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Manage staff</span></a>

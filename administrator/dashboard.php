@@ -23,8 +23,9 @@ require ('../database/connection.php');
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- canvasjs -->
+  <script src="vendor/analysis/canvasjs.min.js"></script>
+
 
 </head>
 
@@ -47,8 +48,8 @@ require ('../database/connection.php');
      <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
-        <a class="nav-link" href="dashboard.php">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -69,8 +70,8 @@ require ('../database/connection.php');
       </li>
 
       <!-- Nav order list -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
+      <li class="nav-item ">
+        <a class="nav-link" href="orderstatus.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order Payed</span></a>
       </li>
@@ -154,74 +155,38 @@ require ('../database/connection.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Assign to Staff</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Customer Name</th>
-                      <th>Phone No</th>
-                      <th>Date</th>
-                      <th>Assign Task</th>
-                      <th>Staff Assigned</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                     <tr>
-                      <th>Customer Name</th>
-                      <th>Phone No</th>
-                      <th>Date</th>
-                      <th>Assign Task</th>
-                      <th>Staff Assigned</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                   
-                    <?php
-                      require ('../database/connection.php');
+           <!-- Area Chart -->
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
 
-                      if ($stmt = $conn->prepare("SELECT custorderID, nama, phone, statusorder, tarikh, staffusername FROM custorder WHERE statusorder='2' ")) 
-                        {
-                          
-                          /* execute statement */
-                          $stmt->execute();
-
-                          /* bind result variables */
-                          $stmt->bind_result($userid, $nama, $phone, $statusorder, $tarikh, $staffusername);
-
-                          /* fetch values */
-                          while ($stmt->fetch()) 
-                          { ?>
-                                <tr>
-                                  <td><?php echo $nama ?></td>
-                                  <td><?php echo $phone ?></td>
-                                  <td><?php echo $tarikh ?></td>
-                                  <td>
-                                  <a href="assignjob.php?id=<?php echo $userid ?>" class="btn btn-primary btn-icon-split">
-                                  <span class="text">Assign</span></a>
-                                  </td>
-                                  <td><?php echo $staffusername ?></td>
-                                </tr> <?php
-                          }
-                          $stmt->close();
-                        }
-                          $conn->close();
-                      ?>      
-
-                  </tbody>
-                </table>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+          
 
-        </div>
-        <!-- /.container-fluid -->
+
+
+
+
 
       </div>
       <!-- End of Main Content -->
@@ -276,12 +241,38 @@ require ('../database/connection.php');
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- Flot Charts JavaScript -->
+  <script src="vendor/flot/excanvas.min.js"></script>
+  <script src="vendor/flot/jquery.flot.js"></script>
+  <script src="vendor/flot/jquery.flot.pie.js"></script>
+  <script src="vendor/flot/jquery.flot.resize.js"></script>
+  <script src="vendor/flot/jquery.flot.time.js"></script>
+  <script src="vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+  <script src="vendor/data/flot-data.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function () {
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+            $.getJSON("../database/chartsales.php", function (result) {
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    title: {
+                        text: "Total Sales by Month - 2018"
+                    },
+                    data: [
+                        {
+                            dataPoints:result,
+                            type:"column",
+                            yValueFormatString: "#RM,##0.00",
+                            indexLabel: "({y})",
+                        }
+                    ]
+                });
+
+                chart.render();
+            });
+        });
+    </script>
+
 
 </body>
 

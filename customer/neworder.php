@@ -276,7 +276,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="file-input">Document file :</label>
                         <div class="col-md-9">
-                          <input id="file-input" type="file" name="failorder" accept="application/pdf">
+                          <input id="file-input" type="file" name="failorder" accept="application/pdf" >
                         </div>
                       </div><br><br>
 

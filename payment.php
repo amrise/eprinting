@@ -28,7 +28,7 @@ if ($result->success === true) {
 <!-- variable information payment of id, amount, customer name -->
 <?php
 $IDpay = $result->transaction->id;
-$amountpay = "RM ".$result->transaction->amount;
+$amountpay = $result->transaction->amount;
 $customerpay = $result->transaction->customer['firstName'];
 ?>
 

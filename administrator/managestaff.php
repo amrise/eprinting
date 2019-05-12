@@ -43,7 +43,16 @@ session_start();
         <div class="sidebar-brand-text mx-3">E-Printing</div>
       </a>
 
-     
+     <!-- Divider -->
+     <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="dashboard.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -53,14 +62,14 @@ session_start();
       </div>
 
       <!-- Nav order list -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order List</span></a>
       </li>
 
       <!-- Nav order list -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="orderstatus.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order Payed</span></a>
@@ -75,7 +84,7 @@ session_start();
       </div>
 
       <!-- Nav register staff -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="registerstaff.php">
           <i class="fas fa-fw fa-user"></i>
           <span>Staff Registration</span></a>

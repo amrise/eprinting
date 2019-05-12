@@ -31,7 +31,7 @@
                    $_SESSION['Logged'] = 1;
                    $_SESSION['username'] = $username;
                    echo '<script language="javascript">';
-			       echo 'window.location.href="administrator/orderlist.php";';
+			       echo 'window.location.href="administrator/dashboard.php";';
 			       echo '</script>'; 
                }
                else if ($account == '2') 

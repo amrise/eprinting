@@ -44,7 +44,16 @@ require ('../database/givejob.php');
         <div class="sidebar-brand-text mx-3">E-Printing</div>
       </a>
 
-     
+     <!-- Divider -->
+     <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="dashboard.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -54,7 +63,7 @@ require ('../database/givejob.php');
       </div>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="orderlist.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Order List</span></a>
@@ -76,14 +85,14 @@ require ('../database/givejob.php');
       </div>
 
       <!-- Nav register staff -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="registerstaff.php">
           <i class="fas fa-fw fa-user"></i>
           <span>Staff Registration</span></a>
       </li>
 
       <!-- Nav manage staff -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="managestaff.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Manage staff</span></a>

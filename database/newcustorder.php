@@ -5,9 +5,9 @@
     $id = intval($_GET['id']);
 
     // Select data dari users
-	$stmt = $conn->prepare("SELECT warna, binding, transparent, amount FROM custorder WHERE custorderID='$id' LIMIT 1");
+	$stmt = $conn->prepare("SELECT warna, binding, transparent, amount, fileprint FROM custorder WHERE custorderID='$id' LIMIT 1");
 	$stmt->execute();
-	$stmt->bind_result($warna, $binding, $transparent, $amount);
+	$stmt->bind_result($warna, $binding, $transparent, $amount, $fileprint);
 
 	// Declare information
 	while ($stmt->fetch()) 
@@ -15,7 +15,8 @@
 	$warna2 = $warna;
 	$binding2 = $binding;
     $transparent2 = $transparent;
-    $amount2 = $amount;
+	$amount2 = $amount;
+	$fileprint2 = $fileprint;
 	}
 	$stmt->close();
 ?>

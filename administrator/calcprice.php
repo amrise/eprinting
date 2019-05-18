@@ -48,11 +48,21 @@ require ('../database/masukprice.php');
       var t = g * val5
       return (t);
     }
+
+    function pagecolour() 
+    { <?php
+    if ($colour1 == 2) {
+      echo 'document.getElementById("colour").disabled = false;';
+    } else {
+      echo 'document.getElementById("colour").disabled = true;';
+    } ?>
+    }
+
   </script>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="pagecolour()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">

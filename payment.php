@@ -58,7 +58,7 @@ $stmt->execute();
 
 if ($conn) {
     echo '<script language="javascript">';
-    echo 'alert("You have paid your printing booking. TQ!!");';
+    echo 'alert("You have paid your printing booking. We will process your booking maximum in 3 days. We notify you by email when your document is finished. TQ!!");';
     echo 'window.location.href="customer/statusorder.php";';
     echo '</script>'; }
     else {

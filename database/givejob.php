@@ -6,8 +6,8 @@ require ('connection.php');
 if(isset($_POST['assignjob'])){
 	$staffname = $_POST['staffname'];
 
-$stmt = $conn->prepare("INSERT INTO taskprint (staffname, fileprint, tarikh, warna, binding, transparent, amount, rombak) VALUES (?, ?, now(), ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssiiiis", $staffname, $file1, $colour1, $binding1, $transparent1, $amount1, $rombak1);
+$stmt = $conn->prepare("INSERT INTO taskprint (staffname, fileprint, tarikh, warna, binding, transparent, amount, rombak, email) VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssiiiiss", $staffname, $file1, $colour1, $binding1, $transparent1, $amount1, $rombak1, $email1);
 $stmt->execute();
 
 if ($conn) {

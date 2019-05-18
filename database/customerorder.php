@@ -3,9 +3,9 @@
 	require ('connection.php');
 
 	// Select data dari users
-	$stmt = $conn->prepare("SELECT username, fullname, usernumber FROM users WHERE username='".$_SESSION['username']."' LIMIT 1");
+	$stmt = $conn->prepare("SELECT username, fullname, usernumber, email FROM users WHERE username='".$_SESSION['username']."' LIMIT 1");
 	$stmt->execute();
-	$stmt->bind_result($usernama, $fullname, $usernumber);
+	$stmt->bind_result($usernama, $fullname, $usernumber, $email);
 
 	// Declare information
 	while ($stmt->fetch()) 
@@ -13,6 +13,7 @@
 	$namacust = $fullname;
 	$nomborcust = $usernumber;
 	$usercust = $usernama;
+	$email1 = $email;
 	}
 	$stmt->close();
 
@@ -36,8 +37,8 @@
 	move_uploaded_file($file_loc,$folder.$file);
   
 	// prepare and bind
-	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone, custusername, rombak) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?)");
-	$stmt->bind_param("iiiisissss", $warna, $binding, $transparent, $amount, $file, $statusorder, $namacust, $nomborcust, $usercust, $rombak);
+	$stmt = $conn->prepare("INSERT INTO custorder (warna, binding, transparent, amount, fileprint, statusorder, tarikh, nama, phone, custusername, rombak, email) VALUES (?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?)");
+	$stmt->bind_param("iiiisisssss", $warna, $binding, $transparent, $amount, $file, $statusorder, $namacust, $nomborcust, $usercust, $rombak, $email1);
 	$stmt->execute();
 						
 	if($stmt)

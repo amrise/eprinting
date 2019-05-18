@@ -321,6 +321,13 @@
                           <input type="number" class="form-control" id="textfield-input" name="usernumber1" min="0" value="<?php echo $nomborcust ?>" required>
                         </div>
                       </div>   
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textfield-input">Email :</label>
+                        <div class="col-md-9">
+                          <input type="email" class="form-control" id="textfield-input" name="email1" value="<?php echo $email1 ?>" required>
+                        </div>
+                      </div>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

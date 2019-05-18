@@ -3,9 +3,9 @@
 
       $id = intval($_GET['id']);
 
-      $stmt = $conn->prepare("SELECT custorderID, warna, binding, transparent, price, nama, fileprint, amount, rombak FROM custorder WHERE custorderID = '$id'; ");
+      $stmt = $conn->prepare("SELECT custorderID, warna, binding, transparent, price, nama, fileprint, amount, rombak, email FROM custorder WHERE custorderID = '$id'; ");
       $stmt->execute();
-      $stmt->bind_result($custid, $colour, $binding, $transparent, $price, $nama, $file, $amount, $rombak);
+      $stmt->bind_result($custid, $colour, $binding, $transparent, $price, $nama, $file, $amount, $rombak, $email);
 
      /* fetch values */
      while ($stmt->fetch()) 
@@ -19,6 +19,7 @@
       $file1 = $file;
       $amount1 = $amount;
       $rombak1 = $rombak;
+      $email1 = $email;
       }
       $stmt->close();
       $conn->close();

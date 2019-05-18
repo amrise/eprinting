@@ -198,7 +198,7 @@
 							<h4>Our Business Office</h4>
 							<p>No. 52, Jalan TU 42, 75450 Ayer Keroh, Melaka</p>
 							<p><i class="fa fa-phone"></i> +60 12-345-6789</p>
-							<p><i class="fa fa-envelope"></i> utemprintpsm@gmail.com</p>
+							<p><i class="fa fa-envelope"></i> eprintingofficial@gmail.com</p>
 						</div>
 					</div>
 					<div class="col-md-3">

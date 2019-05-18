@@ -221,7 +221,7 @@
                       <div id="dropin-container"></div>
                       <br><br>
                       <button class="btn btn-sm btn-primary" type="submit">
-                      <i class="fa fa-dot-circle-o"></i> Pay with BrainTree</button>
+                      <i class="fa fa-dot-circle-o"></i> Pay now ></button>
 
                 </form>
 

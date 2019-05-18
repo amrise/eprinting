@@ -32,7 +32,12 @@ require ('database/custregister.php');
               </div>
 
               <div class="form-label-group">
-                <input type="number" id="nombor" class="form-control" name="usernumber"  min="0" placeholder="Telephone No" required>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
+                <label for="email">Email</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="number" id="nombor" class="form-control" name="usernumber"  min="0" placeholder="Telephone No" pattern=".{10,}" title="Please put specific number!" required>
                 <label for="nombor">Telephone No</label>
               </div>
 

@@ -131,8 +131,8 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-                <div class="card shadow mb-4">
-                <div class="card-header p-3 bg-gray-900">
+          <div class="card shadow mb-4">
+            <div class="card-header p-3 bg-gray-900">
               <h6 class="m-0 font-weight-bold text-gray-100">Booking Order</h6>
             </div>
                   <div class="card-body">
@@ -198,8 +198,8 @@
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Amount to print :</label>
-                        <div class="col-md-9">
-                          <input type="number" class="form-control" id="textfield-input" name="amount" placeholder="1" min="1" required>
+                        <div class="col-md-2">
+                          <input type="number" class="form-control" id="textfield-input" name="amount" value="1" min="1" required>
                         </div>
                       </div>
 

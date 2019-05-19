@@ -34,12 +34,36 @@ $customerpay = $result->transaction->customer['firstName'];
 
 
 
+<!-- amik information utk table payment history -->
+<?php
+      require ('database/connection.php');
+      $id = intval($_GET['id']);
+
+      $stmt = $conn->prepare("SELECT warna, binding, transparent, amount, rombak FROM custorder WHERE custorderID = '$id'; ");
+      $stmt->execute();
+      $stmt->bind_result($colour, $binding, $transparent, $amount, $rombak);
+
+     /* fetch values */
+     while ($stmt->fetch()) 
+      {
+      $colour2 = $colour;
+      $binding2 = $binding;
+      $transparent2 = $transparent;
+      $amount2 = $amount;
+      $rombak2 = $rombak;
+      }
+      $stmt->close();
+      $conn->close();
+?>      
+
+
+
 <!-- insert information payment into database -->
 <?php 
 require ('database/connection.php');
 
-$stmt = $conn->prepare("INSERT INTO paymentcust (payID, payamount, paycustomer, tarikh) VALUES (?, ?, ?, now())");
-$stmt->bind_param("sss", $IDpay, $amountpay, $customerpay);
+$stmt = $conn->prepare("INSERT INTO paymentcust (payID, payamount, paycustomer, tarikh, colour, binding, transparent, printamount, rombak) VALUES (?, ?, ?, now(), ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssiiiis", $IDpay, $amountpay, $customerpay, $colour2, $binding2, $transparent2, $amount2, $rombak2);
 $stmt->execute();
 
 $stmt->close();
@@ -51,14 +75,13 @@ $conn->close();
 <!-- update status customer to In Process -->
 <?php
 require ('database/connection.php');
-$id = intval($_GET['id']);
 
 $stmt = $conn->prepare("UPDATE custorder SET statusorder='2' WHERE custorderID='$id' ");
 $stmt->execute();
 
 if ($conn) {
     echo '<script language="javascript">';
-    echo 'alert("You have paid your printing booking. We will process your booking maximum in 3 days. We notify you by email when your document is finished. TQ!!");';
+    echo 'alert("You have paid your printing booking. We are processing your printing order. It may takes 1 or 2 days.  We notify you by email when your document is finished. TQ!!");';
     echo 'window.location.href="customer/statusorder.php";';
     echo '</script>'; }
     else {

@@ -211,7 +211,7 @@ include('../database/updateprofile.php');
                                   if( $transparent  == 1)
                                    {
                                      echo "Front and Back";
-                                   } else if( $binding  == 2)
+                                   } else if( $transparent  == 2)
                                    {
                                      echo "Front only";
                                    } else
@@ -221,11 +221,11 @@ include('../database/updateprofile.php');
                                   </td>
                                   <td><?php echo $amount ?></td>
                                   <td>
-                                  <a href="../pdfupload/<?php echo $fileprint ?>" target="_blank">
+                                  <a href="../pdfupload/<?php echo $fileprint ?>" target="_blank" title="Click Here">
                                   <i class="fas fa-print"></i></a>
                                   </td>
                                   <td>
-                                  <a href="../database/printdone.php?id=<?php echo $rombak ?>" class="btn btn-success btn-circle">
+                                  <a href="../database/printdone.php?id=<?php echo $rombak ?>" class="btn btn-success btn-circle" title="Click Here">
                                   <i class="fas fa-check"></i></a>
                                   </td>
                                 </tr><?php

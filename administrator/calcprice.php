@@ -208,14 +208,14 @@ require ('../database/masukprice.php');
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Black Print :</label>
                         <div class="col-md-9">
-                          <input type="number" class="form-control" id="black" min="0" >
+                          <input type="number" class="form-control" id="black" min="0" value="0">
                         </div>
                       </div>
 
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="textfield-input">Colour :</label>
                         <div class="col-md-9">
-                          <input type="number" class="form-control" id="colour" min="0" >
+                          <input type="number" class="form-control" id="colour" min="0" value="0">
                         </div>
                       </div>
 

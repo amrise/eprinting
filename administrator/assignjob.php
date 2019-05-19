@@ -155,6 +155,9 @@ require ('../database/givejob.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+        <!-- Content Row -->
+        <div class="row">
+
 
         <!-- Assign to staff -->
           <div class="col-lg-6">
@@ -203,12 +206,54 @@ require ('../database/givejob.php');
                       <br><br>
                       <button class="btn btn-sm btn-primary" type="submit" name="assignjob">
                       <i class="fa fa-dot-circle-o"></i> Assign</button>
-
                     </form>
-
             </div>
           </div>
           </div>
+
+
+
+
+           <!-- Content Column -->
+           <div class="col-lg-6 mb-4">             
+          <!-- Project Card Example -->
+          <div class="card shadow mb-4">
+                <div class="card-header py-3 bg-gradient-info">
+                  <h6 class="m-0 font-weight-bold text-gray-100">Amount of Currently Task</h6>
+                </div>
+                <div class="card-body">
+
+                       <?php
+                        require ('../database/connection.php');
+
+                        if ($stmt = $conn->prepare("SELECT staffusername, COUNT(custorderID) AS total, (COUNT(custorderID) / (SELECT COUNT(custorderID) FROM custorder WHERE statusorder='2')) * 100 AS percentage FROM custorder WHERE statusorder='2' GROUP BY staffusername ")) 
+                        {
+                          
+                          $stmt->execute();
+                          $stmt->bind_result($staffusername, $total, $percentage);
+
+                          /* fetch values */
+                          while ($stmt->fetch()) 
+                          {
+                            echo"
+                            <h4 class='small font-weight-bold'> $staffusername <span class='float-right'> $total </span></h4>
+                            <div class='progress mb-4'>
+                              <div class='progress-bar bg-info' role='progressbar' style='width: $percentage%' aria-valuenow='20' aria-valuemin='0' aria-valuemax='100'></div>
+                            </div>
+                            ";
+                          }
+                          $stmt->close();
+                          
+                         }
+                         $conn->close();
+                          ?>
+
+                </div>
+              </div>
+             </div>             
+
+            <!-- End of row -->
+            </div>
 
         </div>
         <!-- End of Page Content -->

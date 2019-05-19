@@ -208,14 +208,14 @@ session_start();
                                    ?>
                                   </td>
                                   <td>
-                                  <a href="../pdfupload/<?php echo $file ?>" target="_blank">
+                                  <a href="../pdfupload/<?php echo $file ?>" target="_blank" title="Click Here">
                                   <i class="fas fa-print"></i></a>
                                   </td>
                                   <td><?php echo $date ?></td>
                                   <td>
-                                  <a href="calcprice.php?id=<?php echo $orderid ?>" class="btn btn-primary btn-icon-split">
+                                  <a href="calcprice.php?id=<?php echo $orderid ?>" class="btn btn-primary btn-icon-split" title="Click Here">
                                   <span class="text">Accept</span></a>
-                                  <a href="../database/rejectorder.php?id=<?php echo $orderid ?> " class="btn btn-danger btn-icon-split">
+                                  <a href="../database/rejectorder.php?id=<?php echo $orderid ?> " class="btn btn-danger btn-icon-split" title="Click Here">
                                   <span class="text">Reject</span></a>
                                   </td>
                                 </tr> <?php

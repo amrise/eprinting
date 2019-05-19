@@ -191,7 +191,7 @@
                                      echo "Colour";
                                    }  ?>
                                   </td>
-                                  <td><a href="../pdfupload/<?php echo $file ?>" target="_blank"> <i class="fas fa-file-pdf"></i></a></td>
+                                  <td><a href="../pdfupload/<?php echo $file ?>" target="_blank" title="Click Here"> <i class="fas fa-file-pdf"></i></a></td>
                                   <td><?php echo $date ?></td>
                                   <td> <?php
                                   
@@ -209,7 +209,7 @@
                                   } 
                                   else if($status == 3)
                                   {
-                                    echo ' <a href="payorder.php?id=' . " $custid " . ' " class="label info"><span class="text">Pay NOW!!</span></a>  ';
+                                    echo ' <a href="payorder.php?id=' . " $custid " . ' " class="label info" title="Click Here"><span class="text">Pay NOW!!</span></a>  ';
                                   } 
                                   else
                                   {
@@ -219,21 +219,21 @@
                                   <td> <?php
                                   if($status == 0 )
                                   {
-                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split">
+                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split" title="Click Here">
                                     <span class="text">Edit</span></a>
-                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle">
+                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle" title="Delete">
                                     <i class="fas fa-trash"></i></a>  ';
                                   } else if($status == 1 )
                                   {
-                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split">
+                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split" title="Click Here">
                                     <span class="text">Edit</span></a>
-                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle">
+                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle" title="Delete">
                                     <i class="fas fa-trash"></i></a>  ';
                                   } else if($status == 3 )
                                   {
-                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split">
+                                    echo ' <a href="neworder.php?id=' . "$custid" . ' " class="btn btn-primary btn-icon-split" title="Click Here">
                                     <span class="text">Edit</span></a>
-                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle">
+                                    <a href="../database/deleteorder.php?id=' . "$custid" . ' " class="btn btn-danger btn-circle" title="Delete">
                                     <i class="fas fa-trash"></i></a>  ';
                                   } 
                                   ?>

@@ -147,17 +147,25 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Personal Info</th>
+                      <th title="Our staff that printed your document">Person Incharge</th>
                       <th>Date</th>
-                      <th>Amount</th>
+                      <th>Colour</th>
+                      <th>Binding</th>
+                      <th>Transparent</th>
+                      <th>Print Amount</th>
+                      <th>Price Amount</th>
                     </tr>
                   </thead>
                   <tfoot>
                      <tr>
                       <th>ID</th>
-                      <th>Personal Info</th>
+                      <th title="Our staff that printed your document">Person Incharge</th>
                       <th>Date</th>
-                      <th>Amount</th>
+                      <th>Colour</th>
+                      <th>Binding</th>
+                      <th>Transparent</th>
+                      <th>Print Amount</th>
+                      <th>Price Amount</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -165,14 +173,14 @@
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT payID, payamount, paycustomer, tarikh FROM paymentcust WHERE paycustomer='$namacust' ")) 
+                      if ($stmt = $conn->prepare("SELECT payID, payamount, staff, tarikh, colour, binding, transparent, printamount FROM paymentcust WHERE paycustomer='$namacust' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($payID, $payamount, $paycustomer, $tarikh);
+                          $stmt->bind_result($payID, $payamount, $staff, $tarikh, $colour, $binding, $transparent, $printamount);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
@@ -180,8 +188,39 @@
                               echo "
                                 <tr>
                                   <td> $payID </td>
-                                  <td> $paycustomer </td>
+                                  <td> $staff </td>
                                   <td> $tarikh </td>
+                                  <td>";
+                                  if( $colour  == 1)
+                                   {
+                                     echo "Black and White";
+                                   } else
+                                   {
+                                     echo "Colour";
+                                   } echo "
+                                  </td>
+                                  <td>";
+                                  if( $binding  == 1)
+                                   {
+                                     echo "Binding Comb";
+                                   } else
+                                   {
+                                     echo "Binding Tape";
+                                   } echo "
+                                  </td>
+                                  <td> ";
+                                  if( $transparent  == 1)
+                                   {
+                                     echo "Front and Back";
+                                   } else if( $transparent  == 2)
+                                   {
+                                     echo "Front only";
+                                   } else
+                                   {
+                                     echo "Didn't need";
+                                   } echo "
+                                  </td>
+                                  <td> $printamount </td>
                                   <td> $payamount </td>
                                 </tr>
                                 ";

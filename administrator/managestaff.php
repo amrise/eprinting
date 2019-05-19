@@ -202,7 +202,7 @@ session_start();
                                   <td> $usernumber </td>
                                   <td> $username </td>
                                   <td>" . ' 
-                                  <a href="../database/deletestaff.php?id=' . " $userid " . ' " class="btn btn-danger btn-circle">
+                                  <a href="../database/deletestaff.php?id=' . " $userid " . ' " class="btn btn-danger btn-circle" title="Delete">
                                   <i class="fas fa-trash"></i>
                                   ' . " </td>
                                 </tr>

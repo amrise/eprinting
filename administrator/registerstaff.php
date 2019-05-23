@@ -164,21 +164,21 @@ require ('../database/staffregister.php');
                     <form class="form-horizontal" action="" method="post">
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Full Name*:</label>
                         <div class="col-md-9">
                           <input type="text" class="form-control" id="textfield-input" name="fullname" required autofocus>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Username :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Username*:</label>
                         <div class="col-md-9">
                           <input type="text" class="form-control" id="textfield-input" name="username" required>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Telephone No*:</label>
                         <div class="col-md-9">
                           <input type="number" class="form-control" id="textfield-input" name="usernumber" min="0" required>
                         </div>

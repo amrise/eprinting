@@ -1,6 +1,7 @@
 <?php
 session_start();
 require ('../database/connection.php');
+require ('../database/chartcolour.php');
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,9 @@ require ('../database/connection.php');
 
   <!-- canvasjs -->
   <script src="vendor/analysis/canvasjs.min.js"></script>
+
+  <!-- chartjs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
 </head>
@@ -155,38 +159,45 @@ require ('../database/connection.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-           <!-- Area Chart -->
+           <!-- Area Chart of monthly sales -->
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-info">
+                  <h6 class="m-0 font-weight-bold text-gray-100">Earnings Overview, Total Sales per Month</h6>
                 </div>
-
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
                   <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                   </div>
                 </div>
+              </div><br><br>
+
+
+          <!-- Column chart by colour per month -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-info">
+              <h6 class="m-0 font-weight-bold text-gray-100">Amount Colour Print per Month</h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+              <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
               </div>
+            </div>
+          </div><br><br>
+
+          <!-- Radar chart for performance staff
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-info">
+              <h6 class="m-0 font-weight-bold text-gray-100">Overall Staff Performance</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="radarstaff"></canvas>
+              </div>
+            </div>
+          </div><br><br> -->
+
           
-
-
-
-
-
 
       </div>
       <!-- End of Main Content -->
@@ -249,15 +260,14 @@ require ('../database/connection.php');
   <script src="vendor/flot/jquery.flot.time.js"></script>
   <script src="vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
   <script src="vendor/data/flot-data.js"></script>
+
+  <!-- chart total sales per month -->
   <script type="text/javascript">
         $(document).ready(function () {
 
             $.getJSON("../database/chartsales.php", function (result) {
 
                 var chart = new CanvasJS.Chart("chartContainer", {
-                    title: {
-                        text: "Total Sales by Month - 2018"
-                    },
                     axisX: {
                         title: "Month"
                     },
@@ -278,6 +288,93 @@ require ('../database/connection.php');
             });
         });
     </script>
+
+
+    <!-- chart total colour use per month -->
+  <script type="text/javascript">
+        $(document).ready(function () {
+
+                var chart = new CanvasJS.Chart("chartContainer1", {
+                    animationEnabled: true,
+                    axisY: {
+                        title: "Colour Print",
+                        titleFontColor: "#4F81BC",
+                        lineColor: "#4F81BC",
+                        labelFontColor: "#4F81BC",
+                        tickColor: "#4F81BC"
+                    },
+                    axisY2: {
+                        title: "Black Print",
+                        titleFontColor: "#C0504E",
+                        lineColor: "#C0504E",
+                        labelFontColor: "#C0504E",
+                        tickColor: "#C0504E"
+                    },
+                    toolTip: {
+                        shared: true
+                    },
+                    legend: {
+                        cursor:"pointer",
+                        itemclick: toggleDataSeries
+                    },
+                    data: [
+                        {
+                            dataPoints:<?php echo json_encode($data_pointsclr, JSON_NUMERIC_CHECK); ?>,
+                            type:"column",
+                            name: "Print Colour",
+                            legendText: "Print Colour",
+                            showInLegend: true
+                        },
+                        {
+                            dataPoints:<?php echo json_encode($data_pointsclr1, JSON_NUMERIC_CHECK); ?>,
+                            type:"column",
+                            name: "Print Black and White",
+                            legendText: "Print Black and White",
+                            axisYType: "secondary",
+                            showInLegend: true
+                        }
+                    ]
+                });
+
+                chart.render();
+
+  function toggleDataSeries(e) {
+	    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		      e.dataSeries.visible = false;
+	      }
+	    else {
+		      e.dataSeries.visible = true;
+	          }
+	    chart.render();
+      }
+    });
+    </script>
+
+
+<!-- chart performance staff -->
+<script type="text/javascript">
+       var ctx = document.getElementById('radarstaff').getContext('2d');
+       var chart = new Chart(ctx, {
+        // The type of chart we want to create
+         type: 'radar',
+
+    // The data for our dataset
+    data: {
+        labels: ['usri yusra', 'siti yuliza', 'muhammad nabil'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [20, 10, 4, 2]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+    </script>
+
+
 
 
 </body>

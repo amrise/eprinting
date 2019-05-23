@@ -147,7 +147,7 @@
 
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Colour :</label>
+                        <label class="col-md-3 col-form-label">Colour*:</label>
                         <div class="col-md-9 col-form-label">
                           <div class="form-check">
                             <input class="form-check-input" id="radio1" type="radio" value="1" name="warna" required>
@@ -162,7 +162,7 @@
                      
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Binding :</label>
+                        <label class="col-md-3 col-form-label">Binding*:</label>
                         <div class="col-md-9 col-form-label">
                           <div class="form-check">
                             <input class="form-check-input" id="radio1" type="radio" value="1" name="binding" required>
@@ -177,7 +177,7 @@
 
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Transparent Cover :</label>
+                        <label class="col-md-3 col-form-label">Transparent Cover*:</label>
                         <div class="col-md-9 col-form-label">
                           <div class="form-check">
                             <input class="form-check-input" id="radio1" type="radio" value="1" name="transparent" required>
@@ -197,14 +197,14 @@
                       
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="textfield-input">Amount to print :</label>
+                        <label class="col-md-3 col-form-label" for="textfield-input">Amount to print*:</label>
                         <div class="col-md-2">
                           <input type="number" class="form-control" id="textfield-input" name="amount" value="1" min="1" required>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="file-input">Document file :</label>
+                        <label class="col-md-3 col-form-label" for="file-input">Document file*:</label>
                         <div class="col-md-9">
                           <input id="file-input" type="file" name="failorder" accept="application/pdf">
                         </div>

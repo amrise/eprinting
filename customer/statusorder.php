@@ -211,6 +211,10 @@
                                   {
                                     echo ' <a href="payorder.php?id=' . " $custid " . ' " class="label info" title="Click Here"><span class="text">Pay NOW!!</span></a>  ';
                                   } 
+                                  else if($status == 5)
+                                  {
+                                    echo ' <span class="label info">Taken</span> ';
+                                  } 
                                   else
                                   {
                                     echo ' <span class="label success">Done</span>  ';

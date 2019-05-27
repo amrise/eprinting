@@ -140,7 +140,7 @@
 							<div class="featured-icon"><i class="fa fa-television"></i></div>
 							<div class="featured-text">
 								<h4>Booking Online</h4>
-								<p>Purchase a printing service through Laptop screen, Mobile or Tablet at everywhere.</p>
+								<p>Purchase a printing service anytime and everywhere.</p>
 							</div>
 						</div>
 						<div class="featured-item">
@@ -156,14 +156,14 @@
 							<div class="featured-icon"><i class="fa fa-dollar"></i></div>
 							<div class="featured-text">
 								<h4>Online Payment</h4>
-								<p>Make a payment online through Paypal to pay printing purchased.</p>
+								<p>Make a online payment to pay printing purchased.</p>
 							</div>
 						</div>
 						<div class="featured-item">
 							<div class="featured-icon"><i class="fa fa-print"></i></div>
 							<div class="featured-text">
 								<h4>Fast printing process </h4>
-								<p>It may takes 2 or 3 days to print your order depend on the amount purchased.</p>
+								<p>Why need to long queue, while you just need to use your finger.</p>
 							</div>
 						</div>
 					</div>
@@ -172,7 +172,7 @@
 							<div class="featured-icon"><i class="fa fa-bars"></i></div>
 							<div class="featured-text">
 								<h4>Record Purchased</h4>
-								<p>Status of printing booking order can view either the printing still in process or done printing.</p>
+								<p>Your order is maintained and reviewed the printing status process.</p>
 							</div>
 						</div>
 					</div>

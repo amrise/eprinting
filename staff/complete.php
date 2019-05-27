@@ -157,6 +157,7 @@ include('../database/updateprofile.php');
                       <th>Binding</th>
                       <th>Tranparent</th>
                       <th>Contact No</th>
+                      <th>Manage</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -168,6 +169,7 @@ include('../database/updateprofile.php');
                       <th>Binding</th>
                       <th>Tranparent</th>
                       <th>Contact No</th>
+                      <th>Manage</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -175,14 +177,14 @@ include('../database/updateprofile.php');
                     <?php
                       require ('../database/connection.php');
 
-                      if ($stmt = $conn->prepare("SELECT warna, binding, transparent, fileprint, nama, phone, tarikh FROM custorder WHERE staffusername='$fullname1' AND statusorder='4' ")) 
+                      if ($stmt = $conn->prepare("SELECT warna, binding, transparent, fileprint, nama, phone, tarikh, rombak FROM custorder WHERE staffusername='$fullname1' AND statusorder='4' ")) 
                         {
                           
                           /* execute statement */
                           $stmt->execute();
 
                           /* bind result variables */
-                          $stmt->bind_result($warna, $binding, $transparent, $fileprint, $nama, $phone, $tarikh);
+                          $stmt->bind_result($warna, $binding, $transparent, $fileprint, $nama, $phone, $tarikh, $rombak);
 
                           /* fetch values */
                           while ($stmt->fetch()) 
@@ -225,6 +227,10 @@ include('../database/updateprofile.php');
                                    }  ?>
                                   </td>
                                   <td><?php echo $phone ?></td>
+                                  <td>
+                                  <a href="../database/kutipdoc.php?id=<?php echo $rombak ?>" class="btn btn-success btn-circle" title="Click Here">
+                                  <i class="fas fa-check"></i></a>
+                                  </td>
                                 </tr><?php
                               
                           }

@@ -2,6 +2,7 @@
 session_start();
 require ('../database/connection.php');
 require ('../database/chartcolour.php');
+require ('../database/dashboardstatus.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +27,6 @@ require ('../database/chartcolour.php');
 
   <!-- canvasjs -->
   <script src="vendor/analysis/canvasjs.min.js"></script>
-
-  <!-- chartjs -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
 </head>
@@ -159,6 +157,71 @@ require ('../database/chartcolour.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+          </div>
+
+
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!--  Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Order List Request</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $olist1 ?></div>
+                    </div>
+                    <div class="col-auto">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--  Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Order Payed Request</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $opayed1 ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           <!--  Card Example -->
+           <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Finished Product</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $odone1 ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-folder-open fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- End row -->
+          </div>
+
+
            <!-- Area Chart of monthly sales -->
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
@@ -185,17 +248,6 @@ require ('../database/chartcolour.php');
               </div>
             </div>
           </div><br><br>
-
-          <!-- Radar chart for performance staff
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gradient-info">
-              <h6 class="m-0 font-weight-bold text-gray-100">Overall Staff Performance</h6>
-            </div>
-            <div class="card-body">
-                <canvas id="radarstaff"></canvas>
-              </div>
-            </div>
-          </div><br><br> -->
 
           
 
@@ -349,33 +401,6 @@ require ('../database/chartcolour.php');
       }
     });
     </script>
-
-
-<!-- chart performance staff -->
-<script type="text/javascript">
-       var ctx = document.getElementById('radarstaff').getContext('2d');
-       var chart = new Chart(ctx, {
-        // The type of chart we want to create
-         type: 'radar',
-
-    // The data for our dataset
-    data: {
-        labels: ['usri yusra', 'siti yuliza', 'muhammad nabil'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [20, 10, 4, 2]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-    </script>
-
-
-
 
 </body>
 
